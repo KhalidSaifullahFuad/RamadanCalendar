@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_purple"
+    tools:context=".RamadanCalendarFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/header"
+            style="@style/TimeCardView"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginBottom="0dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardElevation="@dimen/card_elevation_title">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/date_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/margin"
+                    android:paddingTop="12dp"
+                    android:paddingRight="@dimen/margin"
+                    android:paddingBottom="12dp">
+
+                    <ImageView
+                        android:id="@+id/calendar"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@drawable/ic_calendar"
+                        app:tint="#fff" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="13dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pt_sans_bold"
+                        android:gravity="center"
+                        android:text="23-Apr-2020"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/date_layout"
+                    android:gravity="center_vertical|end"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/location_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="12dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:id="@+id/division_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pt_sans_bold"
+                            android:gravity="center"
+                            android:text="@string/dhaka"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/size_16" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="13dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="6dp"
+                            android:background="@android:color/white" />
+
+                        <ImageView
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:src="@drawable/ic_location"
+                            app:tint="#fff" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/header"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/month_calendar_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/margin"
+            tools:listitem="@layout/ramadan_day_item" />
+    </RelativeLayout>
+</FrameLayout>

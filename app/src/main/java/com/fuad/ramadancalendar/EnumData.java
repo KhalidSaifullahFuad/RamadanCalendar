@@ -1,0 +1,57 @@
+package com.fuad.ramadancalendar;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
+
+public class EnumData {
+    public static double DIVISION_LATITUDE = 24.3745;
+    public static double DIVISION_LONGITUDE = 88.6042;
+    //    public static final double DHAKA_LATITUDE = 23.8103;
+//    public static final double DHAKA_LONGITUDE = 90.4125;
+    public static final int SUNRISE_BUFFER = -1;
+    public static final int SUNSET_BUFFER = -1;
+    public static final String MY_PREFS_NAME = "ramadan_calendar";
+    public static final String firstRamadanDate = "12-Apr-2021";
+    public static final String endRamadanDate = "11-May-2020";
+    public static SimpleDateFormat dFormatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+    public static SimpleDateFormat tFormatter = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+    public static NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
+
+    //    public static final String[] DAYS = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+
+    public static final String[] DIVISION_LATITUDE_LONGITUDE = {"23.8103:90.4125", "22.3569:91.7832", "24.3745:88.6042", "22.8456:89.5403", "22.7010:90.3535", "24.8949:91.8687", "25.7439:89.2752", "24.7471:90.4203"};
+
+
+//    public static void setLatitudeLongitude(Context context, String division) {
+//        setLatitudeLongitude(DIVISIONS.indexOf(division));
+//    }
+
+    public static String setLatitudeLongitude(Context context, int index) {
+        ArrayList<String> DIVISIONS = new ArrayList<>(Arrays.asList(context.getResources().getString(R.string.dhaka), context.getResources().getString(R.string.chittagong), context.getResources().getString(R.string.rajshahi), context.getResources().getString(R.string.khulna), context.getResources().getString(R.string.barishal), context.getResources().getString(R.string.sylhet), context.getResources().getString(R.string.rangpur), context.getResources().getString(R.string.mymensingh)));
+        DIVISION_LATITUDE = Double.parseDouble(DIVISION_LATITUDE_LONGITUDE[index].split(":")[0]);
+        DIVISION_LONGITUDE = Double.parseDouble(DIVISION_LATITUDE_LONGITUDE[index].split(":")[1]);
+        Log.d("TAG", "setLatitudeLongitude: " + index);
+
+        return DIVISIONS.get(index);
+    }
+
+    public static void setInSharedPref(String key, String value, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
+
+    public static String getFromSharedPref(String key, Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(key, "");
+    }
+}

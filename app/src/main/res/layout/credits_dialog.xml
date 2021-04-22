@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="20dp"
+    android:clipToPadding="false">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/roundedImageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@android:color/white"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10"
+                android:text="Version 2.0.0"
+                android:textSize="13sp" />
+
+            <TextView
+
+                style="@style/CreditsText"
+                android:textSize="17sp"
+                android:fontFamily="@font/pt_sans_bold"
+                android:text="Developed by" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="Khalid Saifullah Fuad" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:textSize="17sp"
+                android:fontFamily="@font/pt_sans_bold"
+                android:text="Contact" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:textIsSelectable="true"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="01920-323000\n01757-026989" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:textSize="17sp"
+                android:fontFamily="@font/pt_sans_bold"
+                android:text="Email" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:textIsSelectable="true"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="quranbasedsolutions@gmail.com\nkhalidsaifullahfuad@gmai.com\ncordialacademy@gmail.com" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:textSize="17sp"
+                android:fontFamily="@font/pt_sans_bold"
+                android:text="Youtube Channel" />
+
+            <TextView
+                android:id="@+id/youtube_link"
+                style="@style/CreditsText"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:clickable="true"
+                android:text="@string/quran_based_solutions"
+                android:focusable="true" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:text="*    *    *" />
+
+            <TextView
+                style="@style/CreditsText"
+                android:text="&#169; 2021 Cordial Academy." />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

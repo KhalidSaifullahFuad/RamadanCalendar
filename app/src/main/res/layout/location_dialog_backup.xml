@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pt_sans_bold"
+            android:padding="12dp"
+            android:text="@string/select_division"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size_20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/colorAccent">
+
+            <RadioButton
+                android:id="@+id/dhaka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/dhaka"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/chittagong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/chittagong"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/rajshahi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/rajshahi"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/khulna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/khulna"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/barishal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/barishal"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/sylhet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/sylhet"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/rangpur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:outlineSpotShadowColor="@color/colorAccent"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/rangpur"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/mymensingh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/pt_sans"
+                android:outlineSpotShadowColor="@color/colorAccent"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/mymensingh"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/size_18" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+</RelativeLayout>

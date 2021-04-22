@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4EEFD"
+    android:orientation="vertical"
+    tools:context=".RamadanInQuranFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                style="@style/AyatCardStyle"
+                android:layout_marginTop="@dimen/margin"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardElevation="@dimen/card_elevation_title">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:paddingLeft="@dimen/padding_15"
+                    android:paddingRight="@dimen/padding_15">
+                    <TextView
+                        style="@style/BanglaFontStyle"
+                        android:fontFamily="@font/sutonny_mj_bold"
+                        android:text="@string/allah_says_in_quran"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView style="@style/AyatCardStyle">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_15">
+
+                    <TextView
+                        android:id="@+id/ayat_no_4"
+                        style="@style/BanglaFontStyle"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/quran_2_185" />
+
+                    <TextView
+                        android:id="@+id/arabic_4"
+                        style="@style/ArabicFontStyle"
+                        android:layout_below="@id/ayat_no_4"
+                        android:text="@string/quran_2_185_arabic" />
+
+                    <TextView
+                        android:id="@+id/meaning_4"
+                        style="@style/BanglaFontStyle"
+                        android:layout_below="@+id/arabic_4"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/quran_2_185_bangla" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView style="@style/AyatCardStyle">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_15">
+
+                    <TextView
+                        android:id="@+id/ayat_no_2"
+                        style="@style/BanglaFontStyle"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/quran_2_183" />
+
+                    <TextView
+                        android:id="@+id/arabic_2"
+                        style="@style/ArabicFontStyle"
+                        android:layout_below="@id/ayat_no_2"
+                        android:text="@string/quran_2_183_arabic" />
+
+                    <TextView
+                        style="@style/BanglaFontStyle"
+                        android:layout_below="@+id/arabic_2"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/quran_2_183_bangla" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView style="@style/AyatCardStyle">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_15">
+
+                    <TextView
+                        android:id="@+id/ayat_no_3"
+                        style="@style/BanglaFontStyle"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/quran_2_187" />
+
+                    <TextView
+                        android:id="@+id/arabic_3"
+                        style="@style/ArabicFontStyle"
+                        android:layout_below="@id/ayat_no_3"
+                        android:text="@string/quran_2_187_arabic" />
+
+                    <TextView
+                        style="@style/BanglaFontStyle"
+                        android:layout_below="@+id/arabic_3"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/quran_2_187_bangla" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/AyatCardStyle"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardElevation="@dimen/card_elevation_title">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:paddingLeft="@dimen/padding_15"
+                    android:paddingRight="@dimen/padding_15">
+
+                    <TextView
+                        style="@style/BanglaFontStyle"
+                        android:fontFamily="@font/sutonny_mj_bold"
+                        android:text="@string/evening"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView style="@style/AyatCardStyle">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_15">
+
+                    <TextView
+                        android:id="@+id/ayat_no_1"
+                        style="@style/BanglaFontStyle"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/quran_86_16" />
+
+                    <TextView
+                        android:id="@+id/arabic_1"
+                        style="@style/ArabicFontStyle"
+                        android:layout_below="@id/ayat_no_1"
+                        android:text="@string/quran_86_16_arabic" />
+
+                    <TextView
+                        android:id="@+id/pronounciation_1"
+                        style="@style/BanglaFontStyle"
+                        android:layout_below="@+id/arabic_1"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/quran_86_16_bangla" />
+
+                    <TextView
+                        android:id="@+id/meaning_1"
+                        style="@style/BanglaFontStyle"
+                        android:layout_below="@+id/pronounciation_1"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/evening_in_quran" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/AyatCardStyle"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardElevation="@dimen/card_elevation_title">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:paddingLeft="@dimen/padding_15"
+                    android:paddingRight="@dimen/padding_15">
+
+                    <TextView
+                        style="@style/BanglaFontStyle"
+                        android:fontFamily="@font/sutonny_mj_bold"
+                        android:text="@string/night"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView style="@style/AyatCardStyle">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/ayat_no_5"
+                        style="@style/BanglaFontStyle"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/quran_91_1" />
+
+                    <TextView
+                        android:id="@+id/arabic_5"
+                        style="@style/ArabicFontStyle"
+                        android:layout_below="@id/ayat_no_5"
+                        android:text="@string/quran_91_1_arabic" />
+
+                    <TextView
+                        android:id="@+id/pronounciation_2"
+                        style="@style/BanglaFontStyle"
+                        android:layout_below="@+id/arabic_5"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/quran_91_1_bangla" />
+
+                    <TextView
+                        style="@style/BanglaFontStyle"
+                        android:layout_below="@+id/pronounciation_2"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/night_in_quran" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

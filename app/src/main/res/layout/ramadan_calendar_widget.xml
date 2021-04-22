@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ramadan_widget"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/rounded_corner_bg"
+    android:padding="@dimen/widget_margin">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/no_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:minWidth="@dimen/item_number_width">
+
+            <TextView
+                android:id="@+id/ramadan_no"
+                style="@style/TimeText"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/ramadan_no_bg"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/size_16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/date_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/no_layout"
+            android:gravity="center"
+            android:minWidth="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/day"
+                style="@style/TimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Wednesday"
+                android:textColor="#666"
+                android:textSize="@dimen/item_text" />
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/TimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="26 April"
+                android:textSize="@dimen/item_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/last_sahr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/itmam_layout"
+            android:layout_toRightOf="@+id/date_layout"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/last_sahr"
+                android:textColor="#666"
+                android:textSize="@dimen/item_text" />
+
+            <TextView
+                android:id="@+id/sahr"
+                style="@style/TimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="04:34 PM"
+                android:textSize="@dimen/item_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/itmam_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/item_margin_right"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/itmam"
+                android:textColor="#666"
+                android:textSize="@dimen/item_text" />
+
+            <TextView
+                android:id="@+id/itmam"
+                style="@style/TimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06:36 PM"
+                android:textSize="@dimen/item_text" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

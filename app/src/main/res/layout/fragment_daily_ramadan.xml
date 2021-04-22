@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_purple"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/margin"
+    tools:context=".DailyRamadanFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/header"
+            style="@style/TimeCardView"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginBottom="0dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardElevation="@dimen/card_elevation_title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ramadan_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pt_sans_bold"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="1st Ramadan"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:layout_marginRight="@dimen/margin"
+                    android:background="@drawable/divider_card_view"
+                    android:visibility="gone"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!--                android:paddingLeft="15dp"-->
+                    <!--                android:paddingTop="12dp"-->
+                    <!--                android:paddingRight="15dp"-->
+                    <!--                android:paddingBottom="12dp"-->
+
+                    <LinearLayout
+                        android:id="@+id/date_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/margin"
+                        android:paddingTop="12dp"
+                        android:paddingRight="@dimen/margin"
+                        android:paddingBottom="12dp">
+                        <!--                        android:onClick="changeDate"-->
+
+                        <ImageView
+                            android:id="@+id/calendar"
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:src="@drawable/ic_calendar"
+                            app:tint="#fff" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="13dp"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="6dp"
+                            android:background="@android:color/white" />
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pt_sans_bold"
+                            android:gravity="center"
+                            android:text="23-Apr-2020"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/size_16" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@+id/date_layout"
+                        android:gravity="center_vertical|end"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/location_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="12dp"
+                            android:paddingRight="15dp"
+                            android:paddingBottom="12dp">
+
+                            <TextView
+                                android:id="@+id/division_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/pt_sans_bold"
+                                android:gravity="center"
+                                android:text="@string/dhaka"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/size_16" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="13dp"
+                                android:layout_marginLeft="6dp"
+                                android:layout_marginRight="6dp"
+                                android:background="@android:color/white" />
+
+                            <ImageView
+                                android:layout_width="13dp"
+                                android:layout_height="13dp"
+                                android:src="@drawable/ic_location"
+                                app:tint="#fff" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/full_calendar"
+            android:layout_below="@+id/header"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/times"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:scrollbars="none"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        style="@style/TimeCardView"
+                        android:layout_marginTop="@dimen/margin">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding">
+
+                            <TextView
+                                style="@style/TimeText"
+                                android:layout_alignParentLeft="true"
+                                android:text="@string/last_sahr" />
+
+                            <TextView
+                                android:id="@+id/last_sahr"
+                                style="@style/TimeText"
+                                android:layout_alignParentRight="true"
+                                android:text="07:35 PM" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView style="@style/TimeCardView">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding">
+
+                            <TextView
+                                style="@style/TimeText"
+                                android:layout_alignParentLeft="true"
+                                android:text="@string/salatul_fajr" />
+
+                            <TextView
+                                android:id="@+id/fajr"
+                                style="@style/TimeText"
+                                android:layout_alignParentRight="true"
+                                android:text="07:35 PM" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView style="@style/TimeCardView">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding">
+
+                            <TextView
+                                style="@style/TimeText"
+                                android:layout_alignParentLeft="true"
+                                android:text="@string/sunrise" />
+
+                            <TextView
+                                android:id="@+id/sunrise"
+                                style="@style/TimeText"
+                                android:layout_alignParentRight="true"
+                                android:text="07:35 PM" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView style="@style/TimeCardView">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/padding">
+
+                            <TextView
+                                style="@style/TimeText"
+                                android:layout_alignParentLeft="true"
+                                android:text="@string/sunset" />
+
+                            <TextView
+                                android:id="@+id/sunset"
+                                style="@style/TimeText"
+                                android:layout_alignParentRight="true"
+                                android:text="07:35 PM" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        style="@style/TimeCardView">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding">
+
+                            <TextView
+                                style="@style/TimeText"
+                                android:layout_alignParentLeft="true"
+                                android:text="@string/salatul_magrib" />
+
+                            <TextView
+                                android:id="@+id/magrib"
+                                style="@style/TimeText"
+                                android:layout_alignParentRight="true"
+                                android:text="07:35 PM" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView style="@style/TimeCardView">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding">
+
+                            <TextView
+                                style="@style/TimeText"
+                                android:layout_alignParentLeft="true"
+                                android:text="@string/itmam" />
+
+                            <TextView
+                                android:id="@+id/itmam"
+                                style="@style/TimeText"
+                                android:layout_alignParentRight="true"
+                                android:text="07:35 PM" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        style="@style/TimeCardView"-->
+<!--                        app:cardBackgroundColor="@color/colorPrimary">-->
+
+<!--                        <RelativeLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:padding="@dimen/padding">-->
+
+<!--                            <TextView-->
+<!--                                style="@style/TimeText"-->
+<!--                                android:layout_alignParentLeft="true"-->
+<!--                                android:text="@string/itmam"-->
+<!--                                android:textColor="@android:color/white"/>-->
+
+<!--                            <TextView-->
+<!--                                style="@style/TimeText"-->
+<!--                                android:layout_alignParentRight="true"-->
+<!--                                android:text="07:35 PM"-->
+<!--                                android:textColor="@android:color/white" />-->
+<!--                        </RelativeLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+                </LinearLayout>
+            </ScrollView>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:indeterminateDrawable="@drawable/circle_loading"
+                android:indeterminateDuration="1500" />
+
+            <TextView
+                android:id="@+id/error_msg"
+                style="@style/TimeText"
+                android:layout_centerInParent="true"
+                android:text="No Internet"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

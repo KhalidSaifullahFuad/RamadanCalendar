@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">Ramadan Calendar</string>
+
+    <string name="allah_says_in_quran">Avjøvn&amp; ieŸyj Avjvgxb K¡yiAvbyj Kvix‡g e‡jb</string>
+    <string name="quran_2_185">myivn evK¡vivn&amp;- 2 t 185</string>
+    <string name="quran_2_185_arabic">شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ وَبَيِّنَاتٍ مِّنَ الْهُدَىٰ وَالْفُرْقَانِ فَمَن شَهِدَ مِنكُمُ الشَّهْرَ فَلْيَصُمْهُ</string>
+    <string name="quran_2_185_bangla">A_©t igvØvb gvm, hv‡Z evi evi cvV¨ GKwUgvÎ K¡yiAvb AeZxY© Kiv n‡q‡Q hv nj gvbe RvwZi Rb¨ GK we‡kl my¯úó c_wb‡`©kK-wek¦msweavb Ges mZ¨ wg_¨vi cv_©K¨Kvix Z_v mKj wewa weav‡bi we¯ÍvwiZ e¨vL¨v I eY©bv wn‡m‡e, AZGe †h e¨vw³ †Zvgv‡`i ga¨ †_‡K †m gvmwUi AvMg‡bi ¯^vÿ jvf Ki‡e ev Ávb jvf Ki‡e †m Aek¨B Dnvi Z_v ivgvØvb gvmwUi wmqvg cvjb Ki‡e|</string>
+
+    <string name="quran_2_183">myivn evK¡vivn&amp;- 2 t 183</string>
+    <string name="quran_2_183_arabic">يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ</string>
+    <string name="quran_2_183_bangla">A_©t †n hviv Cgvb G‡b‡Q, †Zvgv‡`i Dci wmqvg cvj‡bi weavb wjwce× K‡i diR-Avek¨K K‡i †`qv n‡q‡Q †h fv‡e †Zvgv‡`i c~‡e© hviv wQj Zv‡`i Dc‡iI Gfv‡e wmqvg cvj‡bi weavb wjwce× K‡i diR-Avek¨K K‡i †`qv n‡qwQj hv‡Z K‡i †Zvgiv Avjøvn&amp;i wba©vwiZ mxgv‡iLvmg~n Aek¨B h_vh_ fv‡e †g‡b Pj|</string>
+
+    <string name="quran_2_187">myivn evK¡vivn&amp;- 2 t 187</string>
+    <string name="quran_2_187_arabic">وَكُلُوا وَاشْرَبُوا حَتَّىٰ يَتَبَيَّنَ لَكُمُ الْخَيْطُ الْأَبْيَضُ مِنَ الْخَيْطِ الْأَسْوَدِ مِنَ الْفَجْرِ ثُمَّ أَتِمُّوا الصِّيَامَ إِلَى اللَّيْلِ</string>
+    <string name="quran_2_187_bangla">A_©t Avi †Zvgiv LvI I cvb Ki hZÿY bv Kvj †iLv Z_v Mfxi AÜKvi Ae¯’v †_‡K †fv‡ii mv`v †iLv Z_v †fv‡ii cwi®‹vi Ae¯’v my¯úófv‡e †`Lv hvq| AZtci †Zvgiv ivZ ch©šÍ wmqvg¸‡jv‡K Aek¨B c~Y© Ki|</string>
+
+    <string name="sahr_dua">mvnv‡ii `yÕAv</string>
+    <string name="sahr_dua_ayat_no">myivn gviBqvg - 19 t 26</string>
+    <string name="sahr_dua_arabic">إِنِّي نَذَرْتُ لِلرَّحْمَٰنِ صَوْمًا</string>
+    <string name="sahr_dua_pronunciation">D”PviYt Bwbœ bvhviZz wji ingvwb mIgv|</string>
+    <string name="sahr_dua_bangla">A_©t wbðqB Avwg ingvb Z_v `qvevb Avjøvn&amp;i Rb¨B GKwU mIg cvj‡bi msKí Kijvg|</string>
+
+    <string name="itmam_dua">BZgv‡gi `yÕAv</string>
+    <string name="itmam_dua_ayat_no">myivn evK¡vivn&amp;- 02 t 127</string>
+    <string name="itmam_dua_arabic">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيم</string>
+    <string name="itmam_dua_pronunciation">D”PviYt ieŸvbv- ZvK¡eŸvj wgbœv- BbœvKv AvbZvQ&amp;-Qvgx-ÔDj AvÕjx-g|</string>
+    <string name="itmam_dua_bangla">A_©t †n Avgv‡`i ie! Avgv‡`i †_‡K Keyj Kiæb| wbðqB Avcwb me©‡kÖvZv, me©Á|</string>
+
+    <string name="evening">Avjøvn&amp; †hfv‡e mÜ¨vi msÁv w`‡q‡Qb</string>
+    <string name="quran_86_16">myivn BbwkK¡vK - 86 t 16</string>
+    <string name="quran_86_16_arabic">فَلَا أُقْسِمُ بِالشَّفَقِ</string>
+    <string name="quran_86_16_bangla">A_©t Aek¨B Avwg kc_ Kwi mÜ¨vKvjxb jvj Avfvi|</string>
+    <string name="evening_in_quran">16 t 6, 20 t 130, 24 t 36, 25 t 5, 30 t 17, 33 t 42, 40 t 46, 48 t 9, 50 t 39, 76 t 25|</string>
+
+    <string name="night">Avjøvn&amp; †hfv‡e iv‡Zi msÁv w`‡q‡Qb</string>
+    <string name="quran_91_1">myivn jvBj - 91 t 1</string>
+    <string name="quran_91_1_arabic">وَاللَّيْلِ إِذَا يَغْشَىٰ</string>
+    <string name="quran_91_1_bangla">A_©t kc_ iv‡Zi, hLb †m AÜKv‡i Av”Qbœ n‡q hvq|</string>
+    <string name="night_in_quran">6 t 76, 25 t 47, 36 t 37, 78 t 10, 79 t 29, 84 t 17, 89 t 4, 91 t 4, 93 t 2|</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="division">division</string>
+
+    <string name="dhaka">Dhaka</string>
+    <string name="chittagong">Chittagong</string>
+    <string name="rajshahi">Rajshahi</string>
+    <string name="khulna">Khulna</string>
+    <string name="barishal">Barishal</string>
+    <string name="sylhet">Sylhet</string>
+    <string name="rangpur">Rangpur</string>
+    <string name="mymensingh">Mymensingh</string>
+
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+
+    <string name="select_language">Select Language</string>
+    <string name="english_language">English</string>
+    <string name="bangla_language">বাংলা</string>
+
+    <string name="drawer_item_1">Daily Ramadan Calendar</string>
+    <string name="drawer_item_2">Full Ramadan Calendar</string>
+    <string name="drawer_item_3">Ramadan in The Holy Quran</string>
+    <string name="drawer_item_4">Ramadan Duah</string>
+
+    <string name="share">Share</string>
+    <string name="feedback">Feedback</string>
+    <string name="credits">About</string>
+
+    <string name="select_division">Select Division</string>
+    <string name="last_sahr">Last Sahr</string>
+    <string name="salatul_fajr">Salatul Fajr</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="salatul_magrib">Salatul Magrib</string>
+    <string name="itmam">Itmam</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="app_close_msg">Do you want to exit?</string>
+    <string name="ramadan">Ramadan</string>
+    <string name="quran_based_solutions"><a href="https://www.youtube.com/channel/UC7b6yrjukFQrpLiJMBzNq_A">Quran Based Solutions</a></string>
+    <string name="drawer_item_5">Qiblah Compass</string>
+</resources>
