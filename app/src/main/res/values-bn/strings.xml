@@ -69,11 +69,13 @@
     <string name="drawer_item_2">রমাদ্বান ক্যালেন্ডার</string>
     <string name="drawer_item_3">আল কুরআনে রমাদ্বান</string>
     <string name="drawer_item_4">রমাদ্বানের দুআ</string>
+    <string name="drawer_item_5">ক্বিবলাহ্ কম্পাস</string>
+    <string name="select_division">বিভাগ নির্বাচন করুন</string>
+    <string name="update_app">আপডেট অ্যাপ</string>
     <string name="share">শেয়ার</string>
     <string name="feedback">ফিডব্যাক</string>
     <string name="credits">অ্যাপ সম্পর্কে</string>
 
-    <string name="select_division">বিভাগ নির্বাচন করুন</string>
     <string name="last_sahr">শেষ সাহার</string>
     <string name="salatul_fajr">ছলাতুল ফজর</string>
     <string name="sunrise">সূর্যোদয়</string>
@@ -87,5 +89,5 @@
     <string name="ramadan">রমাদ্বান</string>
 
     <string name="quran_based_solutions"><a href="https://www.youtube.com/channel/UC7b6yrjukFQrpLiJMBzNq_A">Quran Based Solutions</a></string>
-    <string name="drawer_item_5">Qiblah Compass</string>
+
 </resources>

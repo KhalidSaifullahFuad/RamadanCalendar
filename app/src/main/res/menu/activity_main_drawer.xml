@@ -44,6 +44,11 @@
             android:icon="@drawable/ic_language"
             android:title="@string/select_language"
             app:itemIconTint="@color/colorPrimary" />
+        <item
+            android:id="@+id/nav_update"
+            android:icon="@drawable/ic_update"
+            android:title="@string/update_app"
+            app:itemIconTint="@color/colorPrimary" />
     </group>
 
     <group

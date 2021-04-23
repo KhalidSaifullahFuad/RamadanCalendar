@@ -27,6 +27,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.NumberFormat;
@@ -160,6 +163,14 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
 
     private void displaySelectedScreen(int itemId) {
         switch (itemId) {
+            case R.id.nav_update:
+                AppUpdater appUpdater = new AppUpdater(this)
+                        .setDisplay(Display.DIALOG)
+                        .setUpdateFrom(UpdateFrom.GITHUB)
+                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
+                        .showAppUpdated(true);
+                appUpdater.start();
+                return;
             case R.id.nav_language:
                 languageDialog();
                 return;

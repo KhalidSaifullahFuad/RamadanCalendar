@@ -192,8 +192,8 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
     }
 
     public String getOrdinalNumber(int n) {
-        Locale locale = new Locale("en");
-        if (locale.equals(Locale.getDefault())) {
+        String locale = getFromSharedPref("locale",getContext());
+        if (locale.equals("en")) {
             return ((n % 10) < 4) ? new String[]{"th", "st", "nd", "rd"}[n%10] : "th";
         } else if (n == 1 || n == 5 || (n >= 7 && n <= 10)) {
             return "ম";
