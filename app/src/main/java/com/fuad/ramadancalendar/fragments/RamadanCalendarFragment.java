@@ -1,4 +1,4 @@
-package com.fuad.ramadancalendar;
+package com.fuad.ramadancalendar.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,11 @@ import java.util.List;
 import java.util.Locale;
 
 import static ca.rmen.sunrisesunset.SunriseSunset.getSunriseSunset;
-import static com.fuad.ramadancalendar.EnumData.*;
+import static com.fuad.ramadancalendar.constants.EnumData.*;
+
+import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.viewmodels.Ramadan;
+import com.fuad.ramadancalendar.adapters.RamadanAdapter;
 
 public class RamadanCalendarFragment extends Fragment {
 

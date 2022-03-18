@@ -1,4 +1,4 @@
-package com.fuad.ramadancalendar;
+package com.fuad.ramadancalendar.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,6 +27,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.fragments.DailyRamadanFragment;
+import com.fuad.ramadancalendar.fragments.QiblaCompassFragment;
+import com.fuad.ramadancalendar.fragments.RamadanCalendarFragment;
+import com.fuad.ramadancalendar.fragments.RamadanDuahFragment;
+import com.fuad.ramadancalendar.fragments.RamadanInQuranFragment;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
@@ -38,7 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
-import static com.fuad.ramadancalendar.EnumData.*;
+import static com.fuad.ramadancalendar.constants.EnumData.*;
 
 public class RamadanActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -53,7 +59,6 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         String locale = getFromSharedPref("locale",getApplicationContext());
         if (locale.isEmpty()) locale = "en";
         setLocale(locale);
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ramadan);
@@ -212,7 +217,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                 toolbarTitle.setText(R.string.drawer_item_4);
                 return new RamadanDuahFragment();
             case R.id.nav_qibla_compass:
-                toolbarTitle.setText(R.string.drawer_item_5);
+                toolbarTitle.setText(R.string.qibla_compass);
                 return new QiblaCompassFragment();
         }
         return null;

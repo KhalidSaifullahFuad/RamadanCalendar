@@ -1,4 +1,4 @@
-package com.fuad.ramadancalendar;
+package com.fuad.ramadancalendar.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -23,7 +23,6 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +32,10 @@ import java.util.Date;
 import java.util.Locale;
 
 import static ca.rmen.sunrisesunset.SunriseSunset.getSunriseSunset;
-import static com.fuad.ramadancalendar.EnumData.*;
+import static com.fuad.ramadancalendar.constants.EnumData.*;
+
+import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.widgets.RamadanCalendarWidget;
 
 public class DailyRamadanFragment extends Fragment implements View.OnClickListener {
 
@@ -44,6 +46,10 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
     private ScrollView times;
 
     public DailyRamadanFragment() {
+//        String locale = getFromSharedPref("locale",getContext());
+//        if (locale.isEmpty()) locale = "en";
+//        setLocale(locale);
+
     }
 
     @Override
@@ -54,6 +60,7 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         tvRamadanNo = view.findViewById(R.id.ramadan_no);
         divider = view.findViewById(R.id.divider);
         tvDate = view.findViewById(R.id.date);

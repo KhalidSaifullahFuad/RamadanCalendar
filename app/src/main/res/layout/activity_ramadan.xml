@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".RamadanActivity">
+    tools:context=".activities.RamadanActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
         android:fitsSystemWindows="true"
-        tools:context=".RamadanActivity"
+        tools:context=".activities.RamadanActivity"
         tools:openDrawer="start">
 
         <FrameLayout

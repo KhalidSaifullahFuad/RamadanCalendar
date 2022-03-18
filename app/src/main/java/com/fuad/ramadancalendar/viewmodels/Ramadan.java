@@ -1,4 +1,4 @@
-package com.fuad.ramadancalendar;
+package com.fuad.ramadancalendar.viewmodels;
 
 public class Ramadan {
     private String day;

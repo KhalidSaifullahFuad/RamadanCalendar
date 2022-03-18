@@ -32,7 +32,7 @@
         <item
             android:id="@+id/nav_qibla_compass"
             android:icon="@drawable/ic_compass"
-            android:title="@string/drawer_item_5"
+            android:title="@string/qibla_compass"
             app:itemIconTint="@color/colorPrimary"
             app:iconTint="@color/light_purple"/>
     </group>
