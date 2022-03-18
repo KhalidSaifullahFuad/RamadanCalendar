@@ -1,4 +1,4 @@
-package com.fuad.ramadancalendar;
+package com.fuad.ramadancalendar.fragments;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+
+import com.fuad.ramadancalendar.R;
 
 public class QiblaCompassFragment extends Fragment implements SensorEventListener{
 

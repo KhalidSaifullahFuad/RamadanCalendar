@@ -1,4 +1,4 @@
-package com.fuad.ramadancalendar.extra;
+package com.fuad.ramadancalendar.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

@@ -1,4 +1,4 @@
-package com.fuad.ramadancalendar;
+package com.fuad.ramadancalendar.widgets;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -15,22 +15,23 @@ import java.util.Date;
 import java.util.Locale;
 
 import static ca.rmen.sunrisesunset.SunriseSunset.getSunriseSunset;
-import static com.fuad.ramadancalendar.EnumData.DIVISION_LATITUDE;
-import static com.fuad.ramadancalendar.EnumData.DIVISION_LONGITUDE;
-import static com.fuad.ramadancalendar.EnumData.SUNRISE_BUFFER;
-import static com.fuad.ramadancalendar.EnumData.SUNSET_BUFFER;
-import static com.fuad.ramadancalendar.EnumData.dFormatter;
-import static com.fuad.ramadancalendar.EnumData.firstRamadanDate;
-import static com.fuad.ramadancalendar.EnumData.nf;
-import static com.fuad.ramadancalendar.EnumData.tFormatter;
+import static com.fuad.ramadancalendar.constants.EnumData.DIVISION_LATITUDE;
+import static com.fuad.ramadancalendar.constants.EnumData.DIVISION_LONGITUDE;
+import static com.fuad.ramadancalendar.constants.EnumData.SUNRISE_BUFFER;
+import static com.fuad.ramadancalendar.constants.EnumData.SUNSET_BUFFER;
+import static com.fuad.ramadancalendar.constants.EnumData.dFormatter;
+import static com.fuad.ramadancalendar.constants.EnumData.firstRamadanDate;
+import static com.fuad.ramadancalendar.constants.EnumData.tFormatter;
+
+import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.activities.RamadanActivity;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class RamadanCalendarWidget extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ramadan_calendar_widget);
@@ -70,6 +71,7 @@ public class RamadanCalendarWidget extends AppWidgetProvider {
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0, new Intent(context, RamadanActivity.class),0);
         views.setOnClickPendingIntent(R.id.ramadan_widget, pendingIntent);
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

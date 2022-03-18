@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F4EEFD"
     android:orientation="vertical"
-    tools:context=".RamadanInQuranFragment">
+    tools:context=".fragments.RamadanInQuranFragment">
 
     <ScrollView
         android:layout_width="match_parent"

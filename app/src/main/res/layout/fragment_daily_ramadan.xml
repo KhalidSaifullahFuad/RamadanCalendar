@@ -7,7 +7,7 @@
     android:background="@color/light_purple"
     android:clipToPadding="false"
     android:paddingBottom="@dimen/margin"
-    tools:context=".DailyRamadanFragment">
+    tools:context=".fragments.DailyRamadanFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

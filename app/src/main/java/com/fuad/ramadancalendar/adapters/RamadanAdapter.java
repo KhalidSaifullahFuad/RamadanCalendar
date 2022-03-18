@@ -1,8 +1,6 @@
-package com.fuad.ramadancalendar;
+package com.fuad.ramadancalendar.adapters;
 
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +8,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.fuad.ramadancalendar.EnumData.dFormatter;
-import static com.fuad.ramadancalendar.EnumData.firstRamadanDate;
+import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.viewmodels.Ramadan;
 
 public class RamadanAdapter extends RecyclerView.Adapter<RamadanAdapter.RamadanViewHolder> {
 
