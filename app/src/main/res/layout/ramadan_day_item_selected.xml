@@ -8,14 +8,16 @@
     android:layout_marginRight="@dimen/margin"
     android:layout_marginBottom="@dimen/margin"
     app:cardCornerRadius="@dimen/card_corner_radius"
-    app:cardElevation="8dp"
+    app:cardElevation="5dp"
+
     android:clipToPadding="false">
 
     <RelativeLayout
         android:id="@+id/ramadan_day_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="13dp">
+        android:padding="13dp"
+        android:background="@drawable/border_bg">
 
         <LinearLayout
             android:id="@+id/no_layout"

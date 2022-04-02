@@ -35,6 +35,7 @@ import static ca.rmen.sunrisesunset.SunriseSunset.getSunriseSunset;
 import static com.fuad.ramadancalendar.constants.EnumData.*;
 
 import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.constants.EnumData;
 import com.fuad.ramadancalendar.widgets.RamadanCalendarWidget;
 
 public class DailyRamadanFragment extends Fragment implements View.OnClickListener {
@@ -45,12 +46,14 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
     private ProgressBar progressBar;
     private ScrollView times;
 
-    public DailyRamadanFragment() {
-//        String locale = getFromSharedPref("locale",getContext());
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        String locale = getFromSharedPref("locale", context);
 //        if (locale.isEmpty()) locale = "en";
-//        setLocale(locale);
-
-    }
+//        setLocale(context, locale);
+//
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -104,7 +107,7 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
             setLatitudeLongitude(getContext(), 0);
         }
 
-        tvDate.setText(dFormatter.format(new Date()));
+        tvDate.setText(dateFormat.format(new Date()));
 
         dateLayout.setOnClickListener(this);
         locationLayout.setOnClickListener(this);
@@ -114,21 +117,19 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
     }
 
     public void changeDate() {
-        Date date = null;
+        Date date;
         try {
-            date = dFormatter.parse(tvDate.getText().toString());
+            date = dateFormat.parse(tvDate.getText().toString());
         } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if (date == null) {
             date = new Date();
+            e.printStackTrace();
         }
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 Date d = new Date(year - 1900, month, day);
-                tvDate.setText(dFormatter.format(d));
+                tvDate.setText(dateFormat.format(d));
             }
         }, date.getYear() + 1900, date.getMonth(), date.getDate());
         datePickerDialog.show();
@@ -141,11 +142,10 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
         String currentDate = tvDate.getText().toString();
         try {
             // For Language Change
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
-            String tempDate = dFormatter.format(dateFormat.parse(firstRamadanDate));
+            String tempDate = dateFormat.format(usDateFormat.parse(firstRamadanDate));
 
-            Date dateBefore = dFormatter.parse(tempDate);
-            Date dateAfter = dFormatter.parse(currentDate);
+            Date dateBefore = dateFormat.parse(tempDate);
+            Date dateAfter = dateFormat.parse(currentDate);
             long difference = dateAfter.getTime() - dateBefore.getTime();
             long daysBetween = (difference / (1000 * 60 * 60 * 24)) + 1;
 
@@ -155,7 +155,7 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
             } else {
                 tvRamadanNo.setVisibility(View.VISIBLE);
                 divider.setVisibility(View.VISIBLE);
-                String ramadanNo = nf.format(daysBetween) + getOrdinalNumber((int) daysBetween);
+                String ramadanNo = numberFormatter.format(daysBetween) + getOrdinalNumber((int) daysBetween);
                 tvRamadanNo.setText(String.format("%s %s", ramadanNo, getResources().getString(R.string.ramadan)));
             }
         } catch (ParseException e) {
@@ -165,10 +165,10 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
 
         Calendar calendar = Calendar.getInstance();
         try {
-            calendar.setTime(dFormatter.parse(tvDate.getText().toString()));
+            calendar.setTime(dateFormat.parse(tvDate.getText().toString()));
             Calendar[] sunriseSunset = getSunriseSunset(calendar, DIVISION_LATITUDE, DIVISION_LONGITUDE);
-            tvSunrise.setText(tFormatter.format(sunriseSunset[0].getTime()));
-            tvSunset.setText(tFormatter.format(sunriseSunset[1].getTime()));
+            tvSunrise.setText(timeFormat.format(sunriseSunset[0].getTime()));
+            tvSunset.setText(timeFormat.format(sunriseSunset[1].getTime()));
 
             setTimes(sunriseSunset[0].getTime(), sunriseSunset[1].getTime());
         } catch (ParseException e) {
@@ -182,31 +182,31 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
         sunrise.setMinutes(sunrise.getMinutes() + SUNRISE_BUFFER);
         sunset.setMinutes(sunset.getMinutes() + SUNSET_BUFFER);
 
-        tvSunrise.setText(tFormatter.format(sunrise));
-        tvSunset.setText(tFormatter.format(sunset));
+        tvSunrise.setText(timeFormat.format(sunrise));
+        tvSunset.setText(timeFormat.format(sunset));
 
         sunrise.setMinutes(sunrise.getMinutes() - 72);
-        tvSahr.setText(tFormatter.format(sunrise));
+        tvSahr.setText(timeFormat.format(sunrise));
         sunrise.setMinutes(sunrise.getMinutes() + 5);
-        tvFajr.setText(tFormatter.format(sunrise));
+        tvFajr.setText(timeFormat.format(sunrise));
         sunset.setMinutes(sunset.getMinutes() + 5);
-        tvMagrib.setText(tFormatter.format(sunset));
+        tvMagrib.setText(timeFormat.format(sunset));
         sunset.setMinutes(sunset.getMinutes() + 67);
-        tvItmam.setText(tFormatter.format(sunset));
+        tvItmam.setText(timeFormat.format(sunset));
 
         progressBar.setVisibility(View.GONE);
         times.setVisibility(View.VISIBLE);
     }
 
     public String getOrdinalNumber(int n) {
-        String locale = getFromSharedPref("locale",getContext());
+        String locale = Locale.getDefault().toString();
         if (locale.equals("en")) {
-            return ((n % 10) < 4) ? new String[]{"th", "st", "nd", "rd"}[n%10] : "th";
+            return ((n % 10) < 4) ? new String[]{"th", "st", "nd", "rd"}[n % 10] : "th";
         } else if (n == 1 || n == 5 || (n >= 7 && n <= 10)) {
             return "ম";
-        } else if (n==2 || n==3){
+        } else if (n == 2 || n == 3) {
             return "য়";
-        } else if (n== 4){
+        } else if (n == 4) {
             return "র্থ";
         } else {
             return "তম";

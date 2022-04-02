@@ -19,9 +19,9 @@ import static com.fuad.ramadancalendar.constants.EnumData.DIVISION_LATITUDE;
 import static com.fuad.ramadancalendar.constants.EnumData.DIVISION_LONGITUDE;
 import static com.fuad.ramadancalendar.constants.EnumData.SUNRISE_BUFFER;
 import static com.fuad.ramadancalendar.constants.EnumData.SUNSET_BUFFER;
-import static com.fuad.ramadancalendar.constants.EnumData.dFormatter;
+import static com.fuad.ramadancalendar.constants.EnumData.dateFormat;
 import static com.fuad.ramadancalendar.constants.EnumData.firstRamadanDate;
-import static com.fuad.ramadancalendar.constants.EnumData.tFormatter;
+import static com.fuad.ramadancalendar.constants.EnumData.timeFormat;
 
 import com.fuad.ramadancalendar.R;
 import com.fuad.ramadancalendar.activities.RamadanActivity;
@@ -41,7 +41,7 @@ public class RamadanCalendarWidget extends AppWidgetProvider {
         Calendar calendar = Calendar.getInstance();
 
         try {
-            Date dateBefore = dFormatter.parse(firstRamadanDate);
+            Date dateBefore = dateFormat.parse(firstRamadanDate);
             long difference = date.getTime() - dateBefore.getTime();
             long daysBetween = (difference / (1000 * 60 * 60 * 24)) + 1;
 
@@ -66,8 +66,8 @@ public class RamadanCalendarWidget extends AppWidgetProvider {
 
         views.setTextViewText(R.id.day, DAYS[date.getDay()]);
         views.setTextViewText(R.id.date, new SimpleDateFormat("dd MMMM", Locale.getDefault()).format(date));
-        views.setTextViewText(R.id.sahr, tFormatter.format(sunrise));
-        views.setTextViewText(R.id.itmam, tFormatter.format(sunset));
+        views.setTextViewText(R.id.sahr, timeFormat.format(sunrise));
+        views.setTextViewText(R.id.itmam, timeFormat.format(sunset));
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0, new Intent(context, RamadanActivity.class),0);
         views.setOnClickPendingIntent(R.id.ramadan_widget, pendingIntent);

@@ -27,6 +27,7 @@ import static ca.rmen.sunrisesunset.SunriseSunset.getSunriseSunset;
 import static com.fuad.ramadancalendar.constants.EnumData.*;
 
 import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.constants.EnumData;
 import com.fuad.ramadancalendar.viewmodels.Ramadan;
 import com.fuad.ramadancalendar.adapters.RamadanAdapter;
 
@@ -71,18 +72,14 @@ public class RamadanCalendarFragment extends Fragment {
         if (!division.isEmpty()) {
             tvDivision.setText(setLatitudeLongitude(getContext(),Integer.parseInt(division)));
         }
-        tvDate.setText(dFormatter.format(new Date()));
+        tvDate.setText(monthDateFormat.format(new Date()));
 
         Calendar calendar = Calendar.getInstance();
         try {
-            // For locale
-            NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
-
             // For Language Change
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
-            String tempDate = dFormatter.format(dateFormat.parse(firstRamadanDate));
+            String tempDate = dateFormat.format(usDateFormat.parse(firstRamadanDate));
 
-            Date date = dFormatter.parse(tempDate);
+            Date date = dateFormat.parse(tempDate);
             for (int i = 0; i < 30; i++) {
                 calendar.setTime(date);
                 Calendar[] sunriseSunset = getSunriseSunset(calendar, DIVISION_LATITUDE, DIVISION_LONGITUDE);
@@ -95,8 +92,8 @@ public class RamadanCalendarFragment extends Fragment {
                 Ramadan ramadan = new Ramadan();
                 ramadan.setDay(DAYS[date.getDay()]);
                 ramadan.setDate(new SimpleDateFormat("dd MMMM", Locale.getDefault()).format(date));
-                ramadan.setSahr(tFormatter.format(sunrise));
-                ramadan.setItmam(tFormatter.format(sunset));
+                ramadan.setSahr(timeFormat.format(sunrise));
+                ramadan.setItmam(timeFormat.format(sunset));
                 ramadanList.add(ramadan);
 
                 date.setDate(date.getDate() + 1);

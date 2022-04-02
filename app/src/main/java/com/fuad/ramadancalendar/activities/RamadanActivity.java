@@ -28,14 +28,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.constants.EnumData;
 import com.fuad.ramadancalendar.fragments.DailyRamadanFragment;
 import com.fuad.ramadancalendar.fragments.QiblaCompassFragment;
 import com.fuad.ramadancalendar.fragments.RamadanCalendarFragment;
 import com.fuad.ramadancalendar.fragments.RamadanDuahFragment;
 import com.fuad.ramadancalendar.fragments.RamadanInQuranFragment;
 import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.AppUpdaterUtils;
+import com.github.javiersantos.appupdater.enums.AppUpdaterError;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
+import com.github.javiersantos.appupdater.objects.Update;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.NumberFormat;
@@ -56,9 +60,9 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String locale = getFromSharedPref("locale",getApplicationContext());
+        String locale = getFromSharedPref("locale", getApplicationContext());
         if (locale.isEmpty()) locale = "en";
-        setLocale(locale);
+        setLocale(getApplicationContext(), locale);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ramadan);
@@ -90,7 +94,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new DailyRamadanFragment())
                     .commit();
-            toolbarTitle.setText(R.string.drawer_item_1);
+            toolbarTitle.setText(R.string.daily_ramadan_calendar);
             navigationView.setCheckedItem(R.id.nav_daily_ramadan);
         }
     }
@@ -101,34 +105,9 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new DailyRamadanFragment())
                 .commit();
-        toolbarTitle.setText(R.string.drawer_item_1);
+        toolbarTitle.setText(R.string.daily_ramadan_calendar);
         navigationView.setCheckedItem(R.id.nav_daily_ramadan);
         Log.d("THIS IS DEBUGGING", "onStart: ");
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.action_share:
-                actionShare();
-                return true;
-            case R.id.action_feedback:
-                actionFeedback();
-                return true;
-            case R.id.action_credits:
-                creditsDialog();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void creditsDialog() {
@@ -169,12 +148,61 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private void displaySelectedScreen(int itemId) {
         switch (itemId) {
             case R.id.nav_update:
-                AppUpdater appUpdater = new AppUpdater(this)
-                        .setDisplay(Display.DIALOG)
-                        .setUpdateFrom(UpdateFrom.GITHUB)
-                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
-                        .showAppUpdated(true);
-                appUpdater.start();
+//                AppUpdater appUpdater = new AppUpdater(this)
+//                        .setDisplay(Display.DIALOG)
+//                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+//                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
+//                        .showAppUpdated(true);
+//                appUpdater.start();
+//                AppUpdater appUpdater = new AppUpdater(this)
+//                        .setTitleOnUpdateAvailable("Update available")
+//                        .setContentOnUpdateAvailable("Check out the latest version available!")
+//                        .setTitleOnUpdateNotAvailable("Update not available")
+//                        .setContentOnUpdateNotAvailable("No update available. Check for updates again later!")
+//                        .setButtonUpdate("Update")
+//                        .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                            }
+//                        })
+//                        .setButtonDismiss("Maybe later")
+//                        .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                            }
+//                        })
+//                        .setButtonDoNotShowAgain("Huh, not interested")
+//                        .setButtonDoNotShowAgainClickListener(new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                            }
+//                        })
+//                        .setIcon(R.drawable.ic_update) // Notification icon
+//                        .setCancelable(false); // Dialog could not be dismissable
+
+//                AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
+//                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+////                        .setUpdateFrom(UpdateFrom.GITHUB)
+////                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
+//                        .withListener(new AppUpdaterUtils.UpdateListener() {
+//                            @Override
+//                            public void onSuccess(Update update, Boolean isUpdateAvailable) {
+//                                Log.d("Latest Version", update.getLatestVersion());
+//                                Log.d("Latest Version Code", String.valueOf(update.getLatestVersionCode()));
+//                                Log.d("Release notes", update.getReleaseNotes());
+//                                Log.d("URL", String.valueOf(update.getUrlToDownload()));
+//                                Log.d("Is update available?", Boolean.toString(isUpdateAvailable));
+//                            }
+//
+//                            @Override
+//                            public void onFailed(AppUpdaterError error) {
+//                                Log.d("AppUpdater Error", "Something went wrong");
+//                            }
+//                        });
+//                appUpdaterUtils.start();
                 return;
             case R.id.nav_language:
                 languageDialog();
@@ -205,19 +233,19 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private Fragment checkFragment(int itemId) {
         switch (itemId) {
             case R.id.nav_daily_ramadan:
-                toolbarTitle.setText(R.string.drawer_item_1);
+                toolbarTitle.setText(R.string.daily_ramadan_calendar);
                 return new DailyRamadanFragment();
             case R.id.nav_ramadan_calendar:
-                toolbarTitle.setText(R.string.drawer_item_2);
+                toolbarTitle.setText(R.string.full_ramadan_calendar);
                 return new RamadanCalendarFragment();
             case R.id.nav_ramadan_in_quran:
-                toolbarTitle.setText(R.string.drawer_item_3);
+                toolbarTitle.setText(R.string.ramadan_in_the_holy_quran);
                 return new RamadanInQuranFragment();
             case R.id.nav_ramadan_dua:
-                toolbarTitle.setText(R.string.drawer_item_4);
+                toolbarTitle.setText(R.string.ramadan_duah);
                 return new RamadanDuahFragment();
             case R.id.nav_qibla_compass:
-                toolbarTitle.setText(R.string.qibla_compass);
+                toolbarTitle.setText(R.string.qiblah_compass);
                 return new QiblaCompassFragment();
         }
         return null;
@@ -247,35 +275,18 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton button = dialog.findViewById(checkedId);
-                String locale = "en";
-                switch (checkedId){
-                    case R.id.language_1:
-                        locale = "en";
-                        break;
-                    case R.id.language_2:
-                        locale = "bn";
-                }
+                String locale = checkedId == R.id.language_bangla ? "bn" : "en";
 
                 setInSharedPref("locale", locale, getApplicationContext());
                 setInSharedPref("language", button.getText().toString(), getApplicationContext());
-                setLocale(locale);
+                setLocale(getApplicationContext(), locale);
                 dialog.dismiss();
                 recreate();
             }
         });
     }
 
-    public void setLocale(String strLocale){
-        Locale locale = new Locale(strLocale);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
 
-        dFormatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
-        tFormatter = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-        nf = NumberFormat.getInstance(Locale.getDefault());
-    }
 
     @Override
     public void onBackPressed() {

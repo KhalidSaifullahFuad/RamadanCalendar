@@ -20,17 +20,17 @@
             android:layout_alignParentTop="true"
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeToolbar"
-            app:elevation="5dp"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp">
+            app:contentInsetStartWithNavigation="0dp"
+            app:elevation="5dp">
 
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pt_sans_bold"
-                android:text="@string/drawer_item_1"
+                android:text="@string/daily_ramadan_calendar"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/size_18" />
         </androidx.appcompat.widget.Toolbar>
@@ -59,9 +59,9 @@
             android:fitsSystemWindows="true"
             android:theme="@style/NavigationView"
             app:itemBackground="@drawable/drawer_selected_item"
+            app:itemIconPadding="15dp"
             app:itemIconTint="@color/colorPrimary"
             app:itemTextColor="@color/colorPrimary"
-            app:itemIconPadding="15dp"
             app:menu="@menu/activity_main_drawer" />
     </androidx.drawerlayout.widget.DrawerLayout>
 
