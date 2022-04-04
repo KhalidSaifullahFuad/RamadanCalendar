@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fuad.ramadancalendar.R;
 import com.fuad.ramadancalendar.constants.EnumData;
@@ -124,7 +125,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     public void actionShare() {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        String shareBody = "Salamun Alaikum Tibtum, Install Ramadan Calendar app. Here,  http://sh-ort.app/o2zkp";
+        String shareBody = "Salamun Alaikum Tibtum, Install Ramadan Calendar app from Play Store. Here,  https://play.google.com/store/apps/details?id=com.fuad.ramadancalendar";
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Ramadan Calendar");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -183,30 +184,30 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
 //                        .setIcon(R.drawable.ic_update) // Notification icon
 //                        .setCancelable(false); // Dialog could not be dismissable
 
-//                AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
-//                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
-////                        .setUpdateFrom(UpdateFrom.GITHUB)
-////                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
-//                        .withListener(new AppUpdaterUtils.UpdateListener() {
-//                            @Override
-//                            public void onSuccess(Update update, Boolean isUpdateAvailable) {
-//                                Log.d("Latest Version", update.getLatestVersion());
-//                                Log.d("Latest Version Code", String.valueOf(update.getLatestVersionCode()));
-//                                Log.d("Release notes", update.getReleaseNotes());
-//                                Log.d("URL", String.valueOf(update.getUrlToDownload()));
-//                                Log.d("Is update available?", Boolean.toString(isUpdateAvailable));
-//                            }
-//
-//                            @Override
-//                            public void onFailed(AppUpdaterError error) {
-//                                Log.d("AppUpdater Error", "Something went wrong");
-//                            }
-//                        });
-//                appUpdaterUtils.start();
+                AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
+                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+//                        .setUpdateFrom(UpdateFrom.GITHUB)
+//                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
+                        .withListener(new AppUpdaterUtils.UpdateListener() {
+                            @Override
+                            public void onSuccess(Update update, Boolean isUpdateAvailable) {
+                                Log.d("Latest Version", update.getLatestVersion());
+                                Log.d("Latest Version Code", String.valueOf(update.getLatestVersionCode()));
+                                Log.d("Release notes", update.getReleaseNotes());
+                                Log.d("URL", String.valueOf(update.getUrlToDownload()));
+                                Log.d("Is update available?", Boolean.toString(isUpdateAvailable));
+                            }
+
+                            @Override
+                            public void onFailed(AppUpdaterError error) {
+                                Log.d("AppUpdater Error", "Something went wrong");
+                            }
+                        });
+                appUpdaterUtils.start();
                 return;
-            case R.id.nav_language:
-                languageDialog();
-                return;
+//            case R.id.nav_language:
+//                languageDialog();
+//                return;
             case R.id.nav_share:
                 actionShare();
                 return;
@@ -261,10 +262,9 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
 
         dialog.show();
 
-        String language = getFromSharedPref("language", getApplicationContext());
-        if(language.isEmpty()) language = "English";
-        String selectedLanguage = String.valueOf(LANGUAGES.indexOf(language)+1);
-        RadioButton radioButton = dialog.findViewById(getResources().getIdentifier("language_"+selectedLanguage, "id", getApplicationContext().getPackageName()));
+        String locale = Locale.getDefault().toString();
+        if(locale.isEmpty()) locale = "en";
+        RadioButton radioButton = dialog.findViewById(getResources().getIdentifier("language_"+locale, "id", getApplicationContext().getPackageName()));
 
         if (radioButton != null)
             radioButton.setChecked(true);
@@ -275,18 +275,15 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton button = dialog.findViewById(checkedId);
-                String locale = checkedId == R.id.language_bangla ? "bn" : "en";
+                String locale = checkedId == R.id.language_bn ? "bn" : "en";
 
                 setInSharedPref("locale", locale, getApplicationContext());
-                setInSharedPref("language", button.getText().toString(), getApplicationContext());
                 setLocale(getApplicationContext(), locale);
                 dialog.dismiss();
                 recreate();
             }
         });
     }
-
-
 
     @Override
     public void onBackPressed() {

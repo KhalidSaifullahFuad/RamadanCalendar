@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -22,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,22 +40,14 @@ import com.fuad.ramadancalendar.R;
 import com.fuad.ramadancalendar.constants.EnumData;
 import com.fuad.ramadancalendar.widgets.RamadanCalendarWidget;
 
-public class DailyRamadanFragment extends Fragment implements View.OnClickListener {
+public class DailyRamadanFragment extends Fragment {
 
-    private TextView tvRamadanNo, tvDate, tvDivision, tvSahr, tvFajr, tvSunrise, tvSunset, tvMagrib, tvItmam, errorMsg;
+    private TextView tvRamadanNo, tvDate, tvDivision, tvSahr, tvFajr, tvSunrise, tvSunset, tvMagrib, tvItmam, btnTxt, errorMsg;
     private View divider;
     private LinearLayout dateLayout, locationLayout;
     private ProgressBar progressBar;
     private ScrollView times;
-
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        String locale = getFromSharedPref("locale", context);
-//        if (locale.isEmpty()) locale = "en";
-//        setLocale(context, locale);
-//
-//    }
+    private CardView fullCalendar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +57,8 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Log.d("LOCALE", "onViewCreated: "+Locale.getDefault().toString());
 
         tvRamadanNo = view.findViewById(R.id.ramadan_no);
         divider = view.findViewById(R.id.divider);
@@ -79,19 +75,18 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
         locationLayout = view.findViewById(R.id.location_layout);
         progressBar = view.findViewById(R.id.progress_bar);
         errorMsg = view.findViewById(R.id.error_msg);
-//        btnTxt = view.findViewById(R.id.btn_text);
+        fullCalendar = view.findViewById(R.id.full_calendar);
+        btnTxt = view.findViewById(R.id.btn_text);
 
         progressBar.setVisibility(View.VISIBLE);
         times.setVisibility(View.GONE);
 
         tvDate.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -109,8 +104,9 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
 
         tvDate.setText(dateFormat.format(new Date()));
 
-        dateLayout.setOnClickListener(this);
-        locationLayout.setOnClickListener(this);
+        dateLayout.setOnClickListener(v -> changeDate());
+        locationLayout.setOnClickListener(v -> divisionDialog());
+        fullCalendar.setOnClickListener(v -> switchFragment(new RamadanCalendarFragment()));
 
 
         getTimes();
@@ -125,13 +121,10 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
             e.printStackTrace();
         }
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-                getContext(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                Date d = new Date(year - 1900, month, day);
-                tvDate.setText(dateFormat.format(d));
-            }
-        }, date.getYear() + 1900, date.getMonth(), date.getDate());
+                getContext(), (view, year, month, day) -> {
+                    Date d = new Date(year - 1900, month, day);
+                    tvDate.setText(dateFormat.format(d));
+                }, date.getYear() + 1900, date.getMonth(), date.getDate());
         datePickerDialog.show();
     }
 
@@ -200,17 +193,9 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
 
     public String getOrdinalNumber(int n) {
         String locale = Locale.getDefault().toString();
-        if (locale.equals("en")) {
-            return ((n % 10) < 4) ? new String[]{"th", "st", "nd", "rd"}[n % 10] : "th";
-        } else if (n == 1 || n == 5 || (n >= 7 && n <= 10)) {
-            return "ম";
-        } else if (n == 2 || n == 3) {
-            return "য়";
-        } else if (n == 4) {
-            return "র্থ";
-        } else {
-            return "তম";
-        }
+        if (locale.equals("bn"))
+            return (n < 7) ? new String[]{"ম", "য়", "য়", "র্থ", "ম", "ষ্ঠ"}[n] : (n <= 10) ? "ম" : "শ";
+        return ((n % 10) < 4) ? new String[]{"th", "st", "nd", "rd"}[n % 10] : "th";
     }
 
     public void divisionDialog() {
@@ -231,31 +216,31 @@ public class DailyRamadanFragment extends Fragment implements View.OnClickListen
 
         final RadioGroup radioGroup = dialog.findViewById(R.id.radio_group);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton button = dialog.findViewById(checkedId);
-                tvDivision.setText(button.getText().toString());
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton button = dialog.findViewById(checkedId);
+            tvDivision.setText(button.getText().toString());
 
-                int index = radioGroup.indexOfChild(button) / 2;
-                Log.d("TAG", "onCheckedChanged: " + index);
-                setLatitudeLongitude(getContext(), index);
-                setInSharedPref("division_index", index + "", getContext());
-                getTimes();
-                dialog.dismiss();
-            }
+            int index = radioGroup.indexOfChild(button) / 2;
+            Log.d("TAG", "onCheckedChanged: " + index);
+            setLatitudeLongitude(getContext(), index);
+            setInSharedPref("division_index", index + "", getContext());
+            getTimes();
+            dialog.dismiss();
         });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.date_layout:
-                changeDate();
-                break;
-            case R.id.location_layout:
-                divisionDialog();
-                break;
+    public void switchFragment(Fragment fragment){
+        if (fragment != null) {
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(
+                            R.anim.slide_up,  // enter
+                            R.anim.fade_out,  // exit
+                            R.anim.fade_in,   // popEnter
+                            R.anim.slide_down  // popExit
+                    )
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 }

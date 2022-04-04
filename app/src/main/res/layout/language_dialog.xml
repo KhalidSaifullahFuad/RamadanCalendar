@@ -35,7 +35,7 @@
             android:divider="@color/colorAccent">
 
             <RadioButton
-                android:id="@+id/language_english"
+                android:id="@+id/language_en"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -53,7 +53,7 @@
                 android:background="@color/colorAccent" />
 
             <RadioButton
-                android:id="@+id/language_bangla"
+                android:id="@+id/language_bn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

@@ -48,20 +48,17 @@
                     android:layout_marginLeft="@dimen/margin"
                     android:layout_marginRight="@dimen/margin"
                     android:background="@drawable/divider_card_view"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <!--                android:paddingLeft="15dp"-->
-                    <!--                android:paddingTop="12dp"-->
-                    <!--                android:paddingRight="15dp"-->
-                    <!--                android:paddingBottom="12dp"-->
 
                     <LinearLayout
                         android:id="@+id/date_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -246,8 +243,7 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-                        style="@style/TimeCardView">
+                    <androidx.cardview.widget.CardView style="@style/TimeCardView">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -287,28 +283,28 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-<!--                    <androidx.cardview.widget.CardView-->
-<!--                        style="@style/TimeCardView"-->
-<!--                        app:cardBackgroundColor="@color/colorPrimary">-->
+                    <!--                    <androidx.cardview.widget.CardView-->
+                    <!--                        style="@style/TimeCardView"-->
+                    <!--                        app:cardBackgroundColor="@color/colorPrimary">-->
 
-<!--                        <RelativeLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:padding="@dimen/padding">-->
+                    <!--                        <RelativeLayout-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:padding="@dimen/padding">-->
 
-<!--                            <TextView-->
-<!--                                style="@style/TimeText"-->
-<!--                                android:layout_alignParentLeft="true"-->
-<!--                                android:text="@string/itmam"-->
-<!--                                android:textColor="@android:color/white"/>-->
+                    <!--                            <TextView-->
+                    <!--                                style="@style/TimeText"-->
+                    <!--                                android:layout_alignParentLeft="true"-->
+                    <!--                                android:text="@string/itmam"-->
+                    <!--                                android:textColor="@android:color/white"/>-->
 
-<!--                            <TextView-->
-<!--                                style="@style/TimeText"-->
-<!--                                android:layout_alignParentRight="true"-->
-<!--                                android:text="07:35 PM"-->
-<!--                                android:textColor="@android:color/white" />-->
-<!--                        </RelativeLayout>-->
-<!--                    </androidx.cardview.widget.CardView>-->
+                    <!--                            <TextView-->
+                    <!--                                style="@style/TimeText"-->
+                    <!--                                android:layout_alignParentRight="true"-->
+                    <!--                                android:text="07:35 PM"-->
+                    <!--                                android:textColor="@android:color/white" />-->
+                    <!--                        </RelativeLayout>-->
+                    <!--                    </androidx.cardview.widget.CardView>-->
                 </LinearLayout>
             </ScrollView>
 
@@ -330,5 +326,30 @@
                 android:textSize="25sp"
                 android:visibility="gone" />
         </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/full_calendar"
+            style="@style/TimeCardView"
+            android:layout_alignParentBottom="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            app:cardElevation="1.5dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            android:onClick="fullCalendar"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/btn_text"
+                style="@style/TimeText"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_alignParentRight="true"
+                android:text="Full Calendar"
+                android:textSize="17sp"
+                android:padding="@dimen/padding"
+                android:gravity="center"
+                android:fontFamily="@font/pt_sans_bold"
+                android:textColor="@android:color/white"/>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </FrameLayout>

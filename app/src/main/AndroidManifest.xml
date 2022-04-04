@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".widgets.RamadanCalendarWidget">
+        <receiver android:name=".widgets.RamadanCalendarWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -23,7 +24,8 @@
         </receiver>
 
         <activity android:name=".activities.InfinitePageActivity" />
-        <activity android:name=".activities.RamadanActivity">
+        <activity android:name=".activities.RamadanActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
