@@ -24,7 +24,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/item_margin_right"
-                android:layout_toRightOf="@+id/no_layout"
                 android:gravity="center"
                 android:minWidth="70dp"
                 android:orientation="vertical">

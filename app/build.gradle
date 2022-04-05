@@ -8,7 +8,7 @@ android {
         applicationId "com.fuad.ramadancalendar"
         minSdkVersion 16
         targetSdkVersion 32
-        versionCode 4
+        versionCode 1
         versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -16,7 +16,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
