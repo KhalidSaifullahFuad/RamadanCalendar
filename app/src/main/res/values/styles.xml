@@ -13,7 +13,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/pt_sans</item>
         <item name="android:textSize">@dimen/size_18</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/text_color</item>
     </style>
 
     <style name="TimeCardView">
@@ -22,6 +22,7 @@
         <item name="android:layout_marginLeft">@dimen/margin</item>
         <item name="android:layout_marginRight">@dimen/margin</item>
         <item name="android:layout_marginBottom">@dimen/margin</item>
+        <item name="cardBackgroundColor">@color/card_background_color</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">@dimen/card_elevation</item>
     </style>

@@ -4,19 +4,29 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/border_bg.xml" value="0.225" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_arrow_back.xml" value="0.23" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_calendar.xml" value="0.23" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_compass.xml" value="0.23" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_credits.xml" value="0.23" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_daily_calendar.xml" value="0.23" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_dua.xml" value="0.23" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_feedback.xml" value="0.23" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ic_update.xml" value="0.225" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/activity_iinfinite_page.xml" value="0.41938405797101447" />
-        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/activity_main.xml" value="0.2798913043478261" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/activity_ramadan.xml" value="0.41938405797101447" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/ayat_item.xml" value="0.403125" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/credits_dialog.xml" value="0.4171875" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/fragment_daily_ramadan.xml" value="0.33" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/fragment_ramadan_calendar.xml" value="0.4171875" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/fragment_ramadan_in_quran.xml" value="0.403125" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/language_dialog.xml" value="0.41938405797101447" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/location_dialog_backup.xml" value="0.33" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/ramadan_calender_widget_1.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/layout/ramadan_day_item_selected.xml" value="0.4171875" />
-        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/menu/activity_main_drawer.xml" value="0.42916666666666664" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/menu/main.xml" value="0.42916666666666664" />
+        <entry key="..\:/Users/saifu/StudioProjects/RamadanCalendar/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.23" />
       </map>
     </option>
   </component>

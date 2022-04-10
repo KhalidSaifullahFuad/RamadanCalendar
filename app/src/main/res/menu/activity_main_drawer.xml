@@ -46,7 +46,7 @@
 <!--            app:itemIconTint="@color/colorPrimary" />-->
         <item
             android:id="@+id/nav_update"
-            android:icon="@drawable/ic_update"
+            android:icon="@drawable/ic_download"
             android:title="@string/update_app"
             app:itemIconTint="@color/colorPrimary" />
     </group>
@@ -68,6 +68,12 @@
             android:id="@+id/nav_credits"
             android:icon="@drawable/ic_credits"
             android:title="@string/credits"
+            app:itemIconTint="@color/colorPrimary" />
+
+        <item
+            android:id="@+id/nav_rate_us"
+            android:icon="@drawable/ic_star"
+            android:title="@string/rate_us"
             app:itemIconTint="@color/colorPrimary" />
     </group>
 </menu>

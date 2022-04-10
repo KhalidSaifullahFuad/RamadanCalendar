@@ -87,6 +87,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/pt_sans_bold"
+                            android:textStyle="bold"
                             android:gravity="center"
                             android:text="23-Apr-2020"
                             android:textColor="@android:color/white"

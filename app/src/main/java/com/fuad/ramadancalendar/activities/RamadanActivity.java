@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,6 +43,11 @@ import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.github.javiersantos.appupdater.objects.Update;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.play.core.review.ReviewInfo;
+import com.google.android.play.core.review.ReviewManager;
+import com.google.android.play.core.review.ReviewManagerFactory;
+import com.google.android.play.core.review.model.ReviewErrorCode;
+import com.google.android.play.core.tasks.Task;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -146,6 +152,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void displaySelectedScreen(int itemId) {
         switch (itemId) {
             case R.id.nav_update:
@@ -155,35 +162,25 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
 //                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
 //                        .showAppUpdated(true);
 //                appUpdater.start();
-//                AppUpdater appUpdater = new AppUpdater(this)
-//                        .setTitleOnUpdateAvailable("Update available")
-//                        .setContentOnUpdateAvailable("Check out the latest version available!")
-//                        .setTitleOnUpdateNotAvailable("Update not available")
-//                        .setContentOnUpdateNotAvailable("No update available. Check for updates again later!")
-//                        .setButtonUpdate("Update")
-//                        .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                            }
-//                        })
-//                        .setButtonDismiss("Maybe later")
-//                        .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                            }
-//                        })
-//                        .setButtonDoNotShowAgain("Huh, not interested")
-//                        .setButtonDoNotShowAgainClickListener(new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                            }
-//                        })
-//                        .setIcon(R.drawable.ic_update) // Notification icon
-//                        .setCancelable(false); // Dialog could not be dismissable
+                AppUpdater appUpdater = new AppUpdater(this)
+                        .setDisplay(Display.DIALOG)
+                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+                        .showAppUpdated(true)
+                        .setTitleOnUpdateAvailable("Update available")
+                        .setContentOnUpdateAvailable("Check out the latest version available!")
+                        .setTitleOnUpdateNotAvailable("Update not available")
+                        .setContentOnUpdateNotAvailable("No update available. Check for updates again later!")
+                        .setButtonUpdate("Update")
+                        .setButtonUpdateClickListener((dialogInterface, i) -> {
 
+                        })
+                        .setButtonDismiss("Maybe later")
+                        .setButtonDismissClickListener((dialogInterface, i) -> {
+
+                        })
+                        .setIcon(R.drawable.ic_update) // Notification icon
+                        .setCancelable(false); // Dialog could not be dismissable
+                appUpdater.start();
                 AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
                         .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
 //                        .setUpdateFrom(UpdateFrom.GITHUB)
@@ -216,6 +213,19 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                 return;
             case R.id.nav_credits:
                 creditsDialog();
+                return;
+            case R.id.nav_rate_us:
+                ReviewManager manager = ReviewManagerFactory.create(this);
+                Task<ReviewInfo> request = manager.requestReviewFlow();
+                request.addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        ReviewInfo reviewInfo = task.getResult();
+                        Task<Void> result = manager.launchReviewFlow(RamadanActivity.this, reviewInfo);
+                        result.addOnCompleteListener(task1 -> Toast.makeText(this, "Thank you for Rating!!", Toast.LENGTH_SHORT).show());
+                    } else {
+                        Log.d("Play Store Review", "displaySelectedScreen: Review Failed");
+                    }
+                });
                 return;
         }
         final Fragment fragment = checkFragment(itemId);
@@ -287,9 +297,16 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START);
-        else {
+        else if (count != 0){
+            getSupportFragmentManager().popBackStack();
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            if(fragment != null){
+
+            }
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(RamadanActivity.this);
             builder.setTitle(R.string.app_name);
             builder.setIcon(R.mipmap.ic_launcher);

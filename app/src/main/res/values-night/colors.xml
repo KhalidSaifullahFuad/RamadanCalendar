@@ -3,8 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#6200EE</color>
-    <color name="light_purple">#F4EEFD</color>
+    <color name="light_purple">@android:color/black</color>
     <color name="purple">#E4D1FF</color>
-    <color name="text_color">@android:color/black</color>
-    <color name="card_background_color">@android:color/white</color>
+    <color name="text_color">@android:color/white</color>
+    <color name="card_background_color">#202020</color>
 </resources>
