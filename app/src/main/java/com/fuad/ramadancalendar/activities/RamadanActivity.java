@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -95,8 +96,10 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
+            String tag = toolbarTitle.getText().toString();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new DailyRamadanFragment())
+                    .replace(R.id.fragment_container, new DailyRamadanFragment(), tag)
+                    .addToBackStack(tag)
                     .commit();
             toolbarTitle.setText(R.string.daily_ramadan_calendar);
             navigationView.setCheckedItem(R.id.nav_daily_ramadan);
@@ -204,7 +207,8 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                 creditsDialog();
                 return;
             case R.id.nav_rate_us:
-                ReviewManager manager = ReviewManagerFactory.create(this);
+                // first method
+               /* ReviewManager manager = ReviewManagerFactory.create(this);
                 Task<ReviewInfo> request = manager.requestReviewFlow();
                 request.addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -214,11 +218,23 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                     } else {
                         Log.d("Play Store Review", "displaySelectedScreen: Review Failed");
                     }
-                });
+                });*/
+                try {
+                    Uri uri = Uri.parse("market://details?id=" + getPackageName());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Uri uri = Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
                 return;
         }
         final Fragment fragment = getFragmentBy(itemId);
         setToolbarTitle(fragment);
+        String tag = toolbarTitle.getText().toString();
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(
                         R.anim.slide_up,  // enter
@@ -226,10 +242,9 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                         R.anim.fade_in,   // popEnter
                         R.anim.slide_down  // popExit
                 )
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(fragment.getTag())
+                .replace(R.id.fragment_container, fragment, tag)
+                .addToBackStack(tag)
                 .commit();
-        Toast.makeText(this, ""+fragment.getTag(), Toast.LENGTH_SHORT).show();
     }
 
     private Fragment getFragmentBy(int itemId) {
@@ -295,15 +310,14 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
+        Log.d("COUNT", "onBackPressed: "+count);
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START);
-        else if (count != 0) {
+        else if (count != 1) {
             getSupportFragmentManager().popBackStack();
-            String fragmentTag = getSupportFragmentManager().getBackStackEntryAt(count - 1).getName();
+            String fragmentTag = getSupportFragmentManager().getBackStackEntryAt(count - 2).getName();
             Fragment fragment = getSupportFragmentManager().findFragmentByTag(fragmentTag);
-            if(fragment != null) {
-                setToolbarTitle(fragment);
-            }
+            setToolbarTitle(fragment);
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(RamadanActivity.this);
             builder.setTitle(R.string.app_name);
