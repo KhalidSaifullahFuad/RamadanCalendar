@@ -12,14 +12,13 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -30,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fuad.ramadancalendar.R;
-import com.fuad.ramadancalendar.constants.EnumData;
 import com.fuad.ramadancalendar.fragments.DailyRamadanFragment;
 import com.fuad.ramadancalendar.fragments.QiblaCompassFragment;
 import com.fuad.ramadancalendar.fragments.RamadanCalendarFragment;
@@ -46,14 +44,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.review.model.ReviewErrorCode;
 import com.google.android.play.core.tasks.Task;
 
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import static com.fuad.ramadancalendar.constants.EnumData.*;
 
@@ -156,12 +153,6 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private void displaySelectedScreen(int itemId) {
         switch (itemId) {
             case R.id.nav_update:
-//                AppUpdater appUpdater = new AppUpdater(this)
-//                        .setDisplay(Display.DIALOG)
-//                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
-//                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
-//                        .showAppUpdated(true);
-//                appUpdater.start();
                 AppUpdater appUpdater = new AppUpdater(this)
                         .setDisplay(Display.DIALOG)
                         .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
@@ -178,13 +169,11 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                         .setButtonDismissClickListener((dialogInterface, i) -> {
 
                         })
-                        .setIcon(R.drawable.ic_update) // Notification icon
-                        .setCancelable(false); // Dialog could not be dismissable
+                        .setIcon(R.drawable.ic_update)
+                        .setCancelable(false);
                 appUpdater.start();
                 AppUpdaterUtils appUpdaterUtils = new AppUpdaterUtils(this)
                         .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
-//                        .setUpdateFrom(UpdateFrom.GITHUB)
-//                        .setGitHubUserAndRepo("KhalidSaifullahFuad", "RamadanCalendar")
                         .withListener(new AppUpdaterUtils.UpdateListener() {
                             @Override
                             public void onSuccess(Update update, Boolean isUpdateAvailable) {
@@ -228,7 +217,8 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                 });
                 return;
         }
-        final Fragment fragment = checkFragment(itemId);
+        final Fragment fragment = getFragmentBy(itemId);
+        setToolbarTitle(fragment);
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(
                         R.anim.slide_up,  // enter
@@ -237,29 +227,39 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                         R.anim.slide_down  // popExit
                 )
                 .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
+                .addToBackStack(fragment.getTag())
                 .commit();
+        Toast.makeText(this, ""+fragment.getTag(), Toast.LENGTH_SHORT).show();
     }
 
-    private Fragment checkFragment(int itemId) {
-        switch (itemId) {
-            case R.id.nav_daily_ramadan:
-                toolbarTitle.setText(R.string.daily_ramadan_calendar);
-                return new DailyRamadanFragment();
-            case R.id.nav_ramadan_calendar:
-                toolbarTitle.setText(R.string.full_ramadan_calendar);
-                return new RamadanCalendarFragment();
-            case R.id.nav_ramadan_in_quran:
-                toolbarTitle.setText(R.string.ramadan_in_the_holy_quran);
-                return new RamadanInQuranFragment();
-            case R.id.nav_ramadan_dua:
-                toolbarTitle.setText(R.string.ramadan_duah);
-                return new RamadanDuahFragment();
-            case R.id.nav_qibla_compass:
-                toolbarTitle.setText(R.string.qiblah_compass);
-                return new QiblaCompassFragment();
+    private Fragment getFragmentBy(int itemId) {
+        Map<Integer, Fragment> fragmentMap = new HashMap<>();
+        fragmentMap.put(R.id.nav_daily_ramadan, new DailyRamadanFragment());
+        fragmentMap.put(R.id.nav_ramadan_calendar, new RamadanCalendarFragment());
+        fragmentMap.put(R.id.nav_ramadan_in_quran, new RamadanInQuranFragment());
+        fragmentMap.put(R.id.nav_ramadan_dua, new RamadanDuahFragment());
+        fragmentMap.put(R.id.nav_qibla_compass, new QiblaCompassFragment());
+
+        return fragmentMap.get(itemId);
+    }
+
+    private void setToolbarTitle(Fragment fragment) {
+        if (fragment instanceof DailyRamadanFragment) {
+            toolbarTitle.setText(R.string.daily_ramadan_calendar);
+            navigationView.setCheckedItem(R.id.nav_daily_ramadan);
+        } else if (fragment instanceof RamadanCalendarFragment) {
+            toolbarTitle.setText(R.string.full_ramadan_calendar);
+            navigationView.setCheckedItem(R.id.nav_ramadan_calendar);
+        } else if (fragment instanceof RamadanInQuranFragment) {
+            toolbarTitle.setText(R.string.ramadan_in_the_holy_quran);
+            navigationView.setCheckedItem(R.id.nav_ramadan_in_quran);
+        } else if (fragment instanceof RamadanDuahFragment) {
+            toolbarTitle.setText(R.string.ramadan_duah);
+            navigationView.setCheckedItem(R.id.nav_ramadan_dua);
+        } else if (fragment instanceof QiblaCompassFragment) {
+            toolbarTitle.setText(R.string.qiblah_compass);
+            navigationView.setCheckedItem(R.id.nav_qibla_compass);
         }
-        return null;
     }
 
     public void languageDialog() {
@@ -281,17 +281,14 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
 
         RadioGroup radioGroup = dialog.findViewById(R.id.radio_group);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton button = dialog.findViewById(checkedId);
-                String locale = checkedId == R.id.language_bn ? "bn" : "en";
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton button = dialog.findViewById(checkedId);
+            String locale1 = checkedId == R.id.language_bn ? "bn" : "en";
 
-                setInSharedPref("locale", locale, getApplicationContext());
-                setLocale(getApplicationContext(), locale);
-                dialog.dismiss();
-                recreate();
-            }
+            setInSharedPref("locale", locale1, getApplicationContext());
+            setLocale(getApplicationContext(), locale1);
+            dialog.dismiss();
+            recreate();
         });
     }
 
@@ -300,11 +297,12 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START);
-        else if (count != 0){
+        else if (count != 0) {
             getSupportFragmentManager().popBackStack();
-            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-            if(fragment != null){
-
+            String fragmentTag = getSupportFragmentManager().getBackStackEntryAt(count - 1).getName();
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(fragmentTag);
+            if(fragment != null) {
+                setToolbarTitle(fragment);
             }
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(RamadanActivity.this);
@@ -312,16 +310,8 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             builder.setIcon(R.mipmap.ic_launcher);
             builder.setMessage(getResources().getString(R.string.app_close_msg))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();
-                        }
-                    })
-                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
+                    .setPositiveButton(R.string.yes, (dialog, id) -> finish())
+                    .setNegativeButton(R.string.no, (dialog, id) -> dialog.cancel());
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
 
@@ -338,5 +328,10 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             button1.setTypeface(face);
             button2.setTypeface(face);
         }
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 }
