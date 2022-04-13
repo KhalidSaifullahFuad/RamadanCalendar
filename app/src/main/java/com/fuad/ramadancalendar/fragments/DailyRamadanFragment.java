@@ -195,7 +195,7 @@ public class DailyRamadanFragment extends Fragment {
         String locale = Locale.getDefault().toString();
         if (locale.equals("bn"))
             return (n < 7) ? new String[]{"ম", "য়", "য়", "র্থ", "ম", "ষ্ঠ"}[n] : (n <= 10) ? "ম" : "শ";
-        return ((n % 10) < 4) ? new String[]{"th", "st", "nd", "rd"}[n % 10] : "th";
+        return ((n / 10 != 1) && (n % 10 < 4)) ? new String[]{"th", "st", "nd", "rd"}[n % 10] : "th";
     }
 
     public void divisionDialog() {
