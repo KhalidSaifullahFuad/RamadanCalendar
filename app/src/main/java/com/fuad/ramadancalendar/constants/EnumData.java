@@ -33,6 +33,7 @@ public class EnumData {
 
     public static final String[] DIVISION_LATITUDE_LONGITUDE = {"23.8103:90.4125", "22.3569:91.7832", "24.3745:88.6042", "22.8456:89.5403", "22.7010:90.3535", "24.8949:91.8687", "25.7439:89.2752", "24.7471:90.4203"};
 
+
     public static String setLatitudeLongitude(Context context, int index) {
         ArrayList<String> DIVISIONS = new ArrayList<>(Arrays.asList(context.getResources().getString(R.string.dhaka), context.getResources().getString(R.string.chittagong), context.getResources().getString(R.string.rajshahi), context.getResources().getString(R.string.khulna), context.getResources().getString(R.string.barishal), context.getResources().getString(R.string.sylhet), context.getResources().getString(R.string.rangpur), context.getResources().getString(R.string.mymensingh)));
         DIVISION_LATITUDE = Double.parseDouble(DIVISION_LATITUDE_LONGITUDE[index].split(":")[0]);

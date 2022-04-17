@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:clipToPadding="false"
+    android:paddingVertical="30dp"
+    android:scrollbars="none"
+    tools:context=".fragments.CreditsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/roundedImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorBackground"
+            android:scaleType="centerCrop"
+            android:src="@drawable/quranic_ramadan_calendar_logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_15"
+            android:gravity="center">
+
+            <TextView
+                style="@style/CreditsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Version "
+                android:textSize="@dimen/size_18" />
+
+            <TextView
+                android:id="@+id/version_text"
+                style="@style/CreditsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2.0.0"
+                android:textSize="@dimen/size_18" />
+
+        </LinearLayout>
+
+        <TextView
+
+            style="@style/CreditsText"
+            android:fontFamily="@font/pt_sans_bold"
+            android:text="Developed by"
+            android:textSize="20sp" />
+
+        <TextView
+            style="@style/CreditsText"
+            android:layout_marginBottom="@dimen/margin_15"
+            android:text="Khalid Saifullah Fuad" />
+
+        <TextView
+            style="@style/CreditsText"
+            android:fontFamily="@font/pt_sans_bold"
+            android:text="Contact"
+            android:textSize="20sp" />
+
+        <TextView
+            style="@style/CreditsText"
+            android:layout_marginBottom="@dimen/margin_15"
+            android:text="01920-323000\n01757-026989"
+            android:textIsSelectable="true" />
+
+        <TextView
+            style="@style/CreditsText"
+            android:fontFamily="@font/pt_sans_bold"
+            android:text="Email"
+            android:textSize="20sp" />
+
+        <TextView
+            style="@style/CreditsText"
+            android:layout_marginBottom="@dimen/margin_15"
+            android:text="quranbasedsolutions@gmail.com\nkhalidsaifullahfuad@gmai.com\ncordialacademy@gmail.com"
+            android:textIsSelectable="true" />
+
+        <TextView
+            style="@style/CreditsText"
+            android:fontFamily="@font/pt_sans_bold"
+            android:text="Youtube Channel"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/youtube_link"
+            style="@style/CreditsText"
+            android:layout_marginBottom="@dimen/margin_15"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/quran_based_solutions" />
+
+        <TextView
+            style="@style/CreditsText"
+            android:text="*    *    *" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/copyright_text"
+            style="@style/CreditsText"
+            android:text="&#169; 2021 Cordial Academy."
+            android:textSize="@dimen/size_18"/>
+    </LinearLayout>
+</ScrollView>
