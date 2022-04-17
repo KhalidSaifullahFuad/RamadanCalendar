@@ -28,11 +28,11 @@
             android:title="@string/ramadan_duah"
             app:itemIconTint="@color/colorPrimary"/>
 
-        <item
-            android:id="@+id/nav_qibla_compass"
-            android:icon="@drawable/ic_compass"
-            android:title="@string/qiblah_compass"
-            app:itemIconTint="@color/colorPrimary"/>
+<!--        <item-->
+<!--            android:id="@+id/nav_qibla_compass"-->
+<!--            android:icon="@drawable/ic_compass"-->
+<!--            android:title="@string/qiblah_compass"-->
+<!--            app:itemIconTint="@color/colorPrimary"/>-->
     </group>
 
     <group
@@ -67,7 +67,10 @@
             android:icon="@drawable/ic_credits"
             android:title="@string/credits"
             app:itemIconTint="@color/colorPrimary" />
+    </group>
 
+    <group
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_rate_us"
             android:icon="@drawable/ic_star"

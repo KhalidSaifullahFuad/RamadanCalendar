@@ -66,6 +66,7 @@
 
             <TextView
                 style="@style/CreditsText"
+                android:layout_width="match_parent"
                 android:textIsSelectable="true"
                 android:layout_marginBottom="@dimen/margin_10"
                 android:text="quranbasedsolutions@gmail.com\nkhalidsaifullahfuad@gmai.com\ncordialacademy@gmail.com" />

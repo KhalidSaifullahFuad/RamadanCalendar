@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#6200EE</color>-->
-<!--    <color name="colorPrimaryDark">#3700B3</color>-->
-<!--    <color name="colorAccent">#6200EE</color>-->
-<!--    <color name="colorBackground">#F4EEFD</color>-->
+    <!--    <color name="colorPrimary">#6200EE</color>-->
+    <!--    <color name="colorPrimaryDark">#3700B3</color>-->
+    <!--    <color name="colorAccent">#6200EE</color>-->
+    <!--    <color name="colorBackground">#F4EEFD</color>-->
 
     <color name="colorPrimary">#005E52</color>
     <color name="colorPrimaryDark">#004138</color>
@@ -16,4 +16,9 @@
     <color name="text_color">@android:color/black</color>
     <color name="text_inverse_color">@android:color/white</color>
     <color name="card_background_color">@android:color/white</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
 </resources>

@@ -34,7 +34,7 @@
         <!--        <item name="android:textColorSecondary">@color/white</item>-->
     </style>
 
-    <style name="NavigationView" >
+    <style name="NavigationView">
         <item name="fontFamily">@font/pt_sans_bold</item>
         <item name="android:listDivider">@color/colorDivider</item>
         <item name="android:textColorSecondary">@color/colorSelected</item>
@@ -76,5 +76,14 @@
         <item name="cardBackgroundColor">@color/card_background_color</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">@dimen/card_elevation</item>
+    </style>
+
+    <style name="Widget.AppTheme.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.AppTheme.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 </resources>

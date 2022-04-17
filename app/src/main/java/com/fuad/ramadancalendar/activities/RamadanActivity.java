@@ -40,6 +40,9 @@ import com.fuad.ramadancalendar.fragments.QiblaCompassFragment;
 import com.fuad.ramadancalendar.fragments.RamadanCalendarFragment;
 import com.fuad.ramadancalendar.fragments.RamadanDuahFragment;
 import com.fuad.ramadancalendar.fragments.RamadanInQuranFragment;
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
@@ -189,6 +192,17 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private void displaySelectedScreen(int itemId) {
         switch (itemId) {
             case R.id.nav_update:
+                if(isNetworkConnected()) {
+                    checkForUpdate();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RamadanActivity.this);
+                    builder.setTitle("No Internet Connection");
+                    builder.setMessage("Please check you internet connection and Try again.")
+                            .setCancelable(true)
+                            .setPositiveButton("OK", (dialog, id) -> dialog.cancel());
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
                 /*AppUpdater appUpdater = new AppUpdater(this)
                         .setDisplay(Display.DIALOG)
                         .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
@@ -249,17 +263,6 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                         Log.d("Play Store Review", "displaySelectedScreen: Review Failed");
                     }
                 });*/
-                /*try {
-                    Uri uri = Uri.parse("market://details?id=" + getPackageName());
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Uri uri = Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName());
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }*/
                 Uri uri = Uri.parse("market://details?id=" + getPackageName());
                 Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
                 goToMarket.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
@@ -291,7 +294,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         fragmentMap.put(R.id.nav_ramadan_calendar, new RamadanCalendarFragment());
         fragmentMap.put(R.id.nav_ramadan_in_quran, new RamadanInQuranFragment());
         fragmentMap.put(R.id.nav_ramadan_dua, new RamadanDuahFragment());
-        fragmentMap.put(R.id.nav_qibla_compass, new QiblaCompassFragment());
+//        fragmentMap.put(R.id.nav_qibla_compass, new QiblaCompassFragment());
         fragmentMap.put(R.id.nav_credits, new CreditsFragment());
 
         return fragmentMap.get(itemId);
@@ -312,7 +315,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             navigationView.setCheckedItem(R.id.nav_ramadan_dua);
         } else if (fragment instanceof QiblaCompassFragment) {
             toolbarTitle.setText(R.string.qiblah_compass);
-            navigationView.setCheckedItem(R.id.nav_qibla_compass);
+//            navigationView.setCheckedItem(R.id.nav_qibla_compass);
         } else if (fragment instanceof CreditsFragment) {
             toolbarTitle.setText(R.string.credits);
             navigationView.setCheckedItem(R.id.nav_credits);
@@ -349,6 +352,27 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         });
     }
 
+    public void checkForUpdate(){
+        AppUpdater appUpdater = new AppUpdater(this)
+                .setDisplay(Display.DIALOG)
+                .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+                .showAppUpdated(true)
+                .setTitleOnUpdateAvailable("Update available")
+                .setContentOnUpdateAvailable("Check out the latest version available!")
+                .setTitleOnUpdateNotAvailable("Update not available")
+                .setContentOnUpdateNotAvailable("No update available. Check for updates again later!")
+                .setButtonUpdate("Update")
+                .setButtonUpdateClickListener((dialogInterface, i) -> {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+                    } catch (ActivityNotFoundException e) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
+                    }
+                })
+                .setCancelable(true);
+        appUpdater.start();
+    }
+
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
@@ -363,10 +387,9 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(RamadanActivity.this);
             builder.setTitle(R.string.app_name);
-            builder.setIcon(R.mipmap.ic_launcher);
             builder.setMessage(getResources().getString(R.string.app_close_msg))
                     .setCancelable(false)
-                    .setPositiveButton(R.string.yes, (dialog, id) -> finish())
+                    .setPositiveButton(R.string.yes, (dialog, id) -> finishAffinity())
                     .setNegativeButton(R.string.no, (dialog, id) -> dialog.cancel());
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
