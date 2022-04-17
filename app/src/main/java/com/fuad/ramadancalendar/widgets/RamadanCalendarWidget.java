@@ -34,7 +34,7 @@ public class RamadanCalendarWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
         // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ramadan_calendar_widget);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_ramadan_calendar);
         NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
         String[] DAYS = {context.getResources().getString(R.string.sunday), context.getResources().getString(R.string.monday), context.getResources().getString(R.string.tuesday), context.getResources().getString(R.string.wednesday), context.getResources().getString(R.string.thursday), context.getResources().getString(R.string.friday), context.getResources().getString(R.string.saturday)};
         Date date = new Date();

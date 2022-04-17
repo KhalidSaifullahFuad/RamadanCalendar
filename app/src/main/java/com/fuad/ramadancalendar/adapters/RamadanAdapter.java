@@ -49,9 +49,9 @@ public class RamadanAdapter extends RecyclerView.Adapter<RamadanAdapter.RamadanV
     @Override
     public int getItemViewType(int position) {
         if(ramadanList.get(position).getDate().equals(currentDate)){
-            return R.layout.ramadan_day_item_selected;
+            return R.layout.layout_item_ramadan_day_selected;
         }
-        return R.layout.ramadan_day_item;
+        return R.layout.layout_item_ramadan_day;
     }
 
     @NonNull

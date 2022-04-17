@@ -25,7 +25,6 @@
                 android:resource="@xml/ramadan_calendar_widget_info" />
         </receiver>
 
-        <activity android:name=".activities.InfinitePageActivity" />
         <activity
             android:name=".activities.RamadanActivity"
             android:exported="true">

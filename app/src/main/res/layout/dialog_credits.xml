@@ -24,7 +24,7 @@
                 android:layout_height="80dp"
                 android:background="@android:color/white"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/quranic_ramadan_calendar_logo" />
 
             <TextView
                 style="@style/CreditsText"

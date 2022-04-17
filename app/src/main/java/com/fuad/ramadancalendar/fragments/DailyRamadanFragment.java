@@ -16,17 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -37,7 +34,6 @@ import static ca.rmen.sunrisesunset.SunriseSunset.getSunriseSunset;
 import static com.fuad.ramadancalendar.constants.EnumData.*;
 
 import com.fuad.ramadancalendar.R;
-import com.fuad.ramadancalendar.constants.EnumData;
 import com.fuad.ramadancalendar.widgets.RamadanCalendarWidget;
 
 public class DailyRamadanFragment extends Fragment {
@@ -204,7 +200,7 @@ public class DailyRamadanFragment extends Fragment {
         final Dialog dialog = new Dialog(getContext());
         dialog.setCancelable(true);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.division_dialog);
+        dialog.setContentView(R.layout.dialog_division_select);
 
         dialog.show();
 

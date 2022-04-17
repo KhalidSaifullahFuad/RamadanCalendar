@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 32
         versionCode 1
-        versionName "0.0.1"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,5 +48,5 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'ca.rmen:lib-sunrise-sunset:1.1.1'
     implementation 'com.github.javiersantos:AppUpdater:2.7'
-    implementation 'com.google.android.play:core:1.7.3'
+    implementation 'com.google.android.play:core:1.10.3'
 }

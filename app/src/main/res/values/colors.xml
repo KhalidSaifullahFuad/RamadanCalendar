@@ -5,9 +5,9 @@
 <!--    <color name="colorAccent">#6200EE</color>-->
 <!--    <color name="colorBackground">#F4EEFD</color>-->
 
-    <color name="colorPrimary">#0A5F52</color>
-    <color name="colorPrimaryDark">#042C25</color>
-    <color name="colorAccent">#0A5F52</color>
+    <color name="colorPrimary">#005E52</color>
+    <color name="colorPrimaryDark">#01554A</color>
+    <color name="colorAccent">#005E52</color>
 
     <color name="colorBackground">#EFEFEF</color>
     <color name="colorSelected">#BDDCD7</color>

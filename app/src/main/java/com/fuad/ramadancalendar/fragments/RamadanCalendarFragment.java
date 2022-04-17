@@ -38,23 +38,11 @@ public class RamadanCalendarFragment extends Fragment {
     public List<Ramadan> ramadanList;
     public TextView tvDate, tvDivision;
     public static boolean flag = true;
-
-    public RamadanCalendarFragment() {
-    }
+    public int position = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_ramadan_calendar, container, false);
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_ramadan_calendar, container, false);
 
         String[] DAYS = {getContext().getResources().getString(R.string.sunday), getContext().getResources().getString(R.string.monday), getContext().getResources().getString(R.string.tuesday), getContext().getResources().getString(R.string.wednesday), getContext().getResources().getString(R.string.thursday), getContext().getResources().getString(R.string.friday), getContext().getResources().getString(R.string.saturday)};
 
@@ -66,7 +54,6 @@ public class RamadanCalendarFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new RamadanAdapter(ramadanList, getContext());
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
         String division = getFromSharedPref("division_index", getContext());
         if (!division.isEmpty()) {
@@ -96,12 +83,17 @@ public class RamadanCalendarFragment extends Fragment {
                 ramadan.setItmam(timeFormat.format(sunset));
                 ramadanList.add(ramadan);
 
+                if(ramadan.getDate().equals(new SimpleDateFormat("dd MMMM", Locale.getDefault()).format(new Date())))
+                    position = i;
+
                 date.setDate(date.getDate() + 1);
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
         adapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(position);
 
+        return view;
     }
 }

@@ -10,6 +10,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -33,26 +34,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fuad.ramadancalendar.R;
+import com.fuad.ramadancalendar.fragments.CreditsFragment;
 import com.fuad.ramadancalendar.fragments.DailyRamadanFragment;
 import com.fuad.ramadancalendar.fragments.QiblaCompassFragment;
 import com.fuad.ramadancalendar.fragments.RamadanCalendarFragment;
 import com.fuad.ramadancalendar.fragments.RamadanDuahFragment;
 import com.fuad.ramadancalendar.fragments.RamadanInQuranFragment;
-import com.github.javiersantos.appupdater.AppUpdater;
-import com.github.javiersantos.appupdater.AppUpdaterUtils;
-import com.github.javiersantos.appupdater.enums.AppUpdaterError;
-import com.github.javiersantos.appupdater.enums.Display;
-import com.github.javiersantos.appupdater.enums.UpdateFrom;
-import com.github.javiersantos.appupdater.objects.Update;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.InstallState;
-import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 
 
@@ -71,7 +62,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private Toolbar toolbar;
     private Integer itemIdWhenClosed;
     private NavigationView navigationView;
-    private final int RC_APP_UPDATE = 100;
+    private final int UPDATE_REQUEST_CODE = 100;
 
     private AppUpdateManager mAppUpdateManager;
 
@@ -88,6 +79,24 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         toolbarTitle = findViewById(R.id.toolbar_title);
         drawer = findViewById(R.id.drawer_layout);
         setSupportActionBar(toolbar);
+
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+
+        //if(isNetworkConnected()) {
+            mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {
+                if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                    try {
+                        mAppUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, this, UPDATE_REQUEST_CODE);
+                        Log.d("TAG", "onAppUpdateSuccess: "+result.updateAvailability());
+                    } catch (IntentSender.SendIntentException e) {
+                        e.printStackTrace();
+                        Log.d("TAG", "onAppUpdateFailure: " + e);
+                    }
+                }
+            }).addOnFailureListener(e -> {
+                Log.d("TAG", "onAppUpdateFailure: " + e.toString());
+            });
+       // }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
@@ -116,40 +125,36 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             toolbarTitle.setText(R.string.daily_ramadan_calendar);
             navigationView.setCheckedItem(R.id.nav_daily_ramadan);
         }
-        mAppUpdateManager = AppUpdateManagerFactory.create(this);
-        mAppUpdateManager.registerListener(state -> {
-            if(state.installStatus() == InstallStatus.DOWNLOADED) {
-                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),"New app is ready!", Snackbar.LENGTH_INDEFINITE);
-                snackbar.setAction("Install", view -> mAppUpdateManager.completeUpdate());
-                snackbar.show();
-            }
-        });
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        String title = getResources().getString(R.string.daily_ramadan_calendar);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new DailyRamadanFragment())
+                .replace(R.id.fragment_container, new DailyRamadanFragment(), title)
+                .addToBackStack(title)
                 .commit();
-        toolbarTitle.setText(R.string.daily_ramadan_calendar);
+        toolbarTitle.setText(title);
         navigationView.setCheckedItem(R.id.nav_daily_ramadan);
-        Log.d("THIS IS DEBUGGING", "onStart: ");
-    }
 
-//    @Override
-//    protected void onStop() {
-//        if(mAppUpdateManager!=null) mAppUpdateManager.unregisterListener(installStateUpdatedListener);
-//        super.onStop();
-//    }
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {
+            if (result.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                try {
+                    mAppUpdateManager.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, this, UPDATE_REQUEST_CODE);
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
 
     public void creditsDialog() {
         final Dialog dialog = new Dialog(RamadanActivity.this);
         dialog.setCancelable(true);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.credits_dialog);
+        dialog.setContentView(R.layout.dialog_credits);
         dialog.show();
 
         TextView textView = dialog.findViewById(R.id.youtube_link);
@@ -221,16 +226,6 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                             }
                         });
                 appUpdaterUtils.start();*/
-                mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {
-                    if(result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                        try {
-                            mAppUpdateManager.startUpdateFlowForResult(result, AppUpdateType.FLEXIBLE, RamadanActivity.this, RC_APP_UPDATE);
-                        } catch (IntentSender.SendIntentException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
                 return;
 //            case R.id.nav_language:
 //                languageDialog();
@@ -240,9 +235,6 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                 return;
             case R.id.nav_feedback:
                 actionFeedback();
-                return;
-            case R.id.nav_credits:
-                creditsDialog();
                 return;
             case R.id.nav_rate_us:
                 // first method
@@ -300,6 +292,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         fragmentMap.put(R.id.nav_ramadan_in_quran, new RamadanInQuranFragment());
         fragmentMap.put(R.id.nav_ramadan_dua, new RamadanDuahFragment());
         fragmentMap.put(R.id.nav_qibla_compass, new QiblaCompassFragment());
+        fragmentMap.put(R.id.nav_credits, new CreditsFragment());
 
         return fragmentMap.get(itemId);
     }
@@ -320,6 +313,9 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         } else if (fragment instanceof QiblaCompassFragment) {
             toolbarTitle.setText(R.string.qiblah_compass);
             navigationView.setCheckedItem(R.id.nav_qibla_compass);
+        } else if (fragment instanceof CreditsFragment) {
+            toolbarTitle.setText(R.string.credits);
+            navigationView.setCheckedItem(R.id.nav_credits);
         }
     }
 
@@ -329,7 +325,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         final Dialog dialog = new Dialog(RamadanActivity.this);
         dialog.setCancelable(true);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.language_dialog);
+        dialog.setContentView(R.layout.dialog_language_select);
 
         dialog.show();
 
@@ -356,7 +352,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
-        Log.d("COUNT", "onBackPressed: "+count);
+
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START);
         else if (count != 1) {
@@ -393,15 +389,5 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    /* we can check without requestCode == RC_APP_UPDATE because
-    we known exactly there is only requestCode from  startUpdateFlowForResult() */
-        if(requestCode == RC_APP_UPDATE && resultCode != RESULT_OK) {
-            Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }
