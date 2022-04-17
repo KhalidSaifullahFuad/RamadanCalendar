@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/drawable/border_bg.xml" value="0.101" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/drawable/divider_card_view.xml" value="0.101" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/drawable/drawer_selected_item.xml" value="0.101" />
+        <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/drawable/ramadan_no_bg.xml" value="0.2285" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/activity_iinfinite_page.xml" value="0.26875" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/activity_main2.xml" value="0.26875" />
@@ -23,6 +24,7 @@
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/fragment_ramadan_in_quran.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/fragment_second.xml" value="0.26875" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/language_dialog.xml" value="0.12239583333333333" />
+        <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/layout_item_ramadan_day.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/location_dialog_backup.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/ramadan_calendar_widget.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/Fuad/StudioProjects/RamadanCalendar/app/src/main/res/layout/ramadan_day_item.xml" value="0.33" />

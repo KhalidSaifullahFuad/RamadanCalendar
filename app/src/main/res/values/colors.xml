@@ -6,10 +6,11 @@
 <!--    <color name="colorBackground">#F4EEFD</color>-->
 
     <color name="colorPrimary">#005E52</color>
-    <color name="colorPrimaryDark">#01554A</color>
+    <color name="colorPrimaryDark">#004138</color>
     <color name="colorAccent">#005E52</color>
 
     <color name="colorBackground">#EFEFEF</color>
+    <color name="colorDivider">@color/colorBackground</color>
     <color name="colorSelected">#BDDCD7</color>
 
     <color name="text_color">@android:color/black</color>
