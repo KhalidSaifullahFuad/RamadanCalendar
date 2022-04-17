@@ -26,15 +26,13 @@
             android:id="@+id/nav_ramadan_dua"
             android:icon="@drawable/ic_dua"
             android:title="@string/ramadan_duah"
-            app:itemIconTint="@color/colorPrimary"
-            app:iconTint="@color/light_purple"/>
+            app:itemIconTint="@color/colorPrimary"/>
 
         <item
             android:id="@+id/nav_qibla_compass"
             android:icon="@drawable/ic_compass"
             android:title="@string/qiblah_compass"
-            app:itemIconTint="@color/colorPrimary"
-            app:iconTint="@color/light_purple"/>
+            app:itemIconTint="@color/colorPrimary"/>
     </group>
 
     <group

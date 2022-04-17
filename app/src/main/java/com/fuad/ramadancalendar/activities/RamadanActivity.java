@@ -1,6 +1,7 @@
 package com.fuad.ramadancalendar.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +13,10 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -42,10 +45,16 @@ import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.github.javiersantos.appupdater.objects.Update;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.play.core.review.ReviewInfo;
-import com.google.android.play.core.review.ReviewManager;
-import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,6 +71,9 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private Toolbar toolbar;
     private Integer itemIdWhenClosed;
     private NavigationView navigationView;
+    private final int RC_APP_UPDATE = 100;
+
+    private AppUpdateManager mAppUpdateManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +116,15 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
             toolbarTitle.setText(R.string.daily_ramadan_calendar);
             navigationView.setCheckedItem(R.id.nav_daily_ramadan);
         }
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+        mAppUpdateManager.registerListener(state -> {
+            if(state.installStatus() == InstallStatus.DOWNLOADED) {
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),"New app is ready!", Snackbar.LENGTH_INDEFINITE);
+                snackbar.setAction("Install", view -> mAppUpdateManager.completeUpdate());
+                snackbar.show();
+            }
+        });
+
     }
 
     @Override
@@ -116,6 +137,13 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
         navigationView.setCheckedItem(R.id.nav_daily_ramadan);
         Log.d("THIS IS DEBUGGING", "onStart: ");
     }
+
+//    @Override
+//    protected void onStop() {
+//        if(mAppUpdateManager!=null) mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+//        super.onStop();
+//    }
+
 
     public void creditsDialog() {
         final Dialog dialog = new Dialog(RamadanActivity.this);
@@ -156,7 +184,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private void displaySelectedScreen(int itemId) {
         switch (itemId) {
             case R.id.nav_update:
-                AppUpdater appUpdater = new AppUpdater(this)
+                /*AppUpdater appUpdater = new AppUpdater(this)
                         .setDisplay(Display.DIALOG)
                         .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
                         .showAppUpdated(true)
@@ -192,7 +220,17 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                                 Log.d("AppUpdater Error", "Something went wrong");
                             }
                         });
-                appUpdaterUtils.start();
+                appUpdaterUtils.start();*/
+                mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {
+                    if(result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
+                        try {
+                            mAppUpdateManager.startUpdateFlowForResult(result, AppUpdateType.FLEXIBLE, RamadanActivity.this, RC_APP_UPDATE);
+                        } catch (IntentSender.SendIntentException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
                 return;
 //            case R.id.nav_language:
 //                languageDialog();
@@ -219,7 +257,7 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                         Log.d("Play Store Review", "displaySelectedScreen: Review Failed");
                     }
                 });*/
-                try {
+                /*try {
                     Uri uri = Uri.parse("market://details?id=" + getPackageName());
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -229,6 +267,14 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
+                }*/
+                Uri uri = Uri.parse("market://details?id=" + getPackageName());
+                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                goToMarket.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                try {
+                    startActivity(goToMarket);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
                 }
                 return;
         }
@@ -347,5 +393,15 @@ public class RamadanActivity extends AppCompatActivity implements NavigationView
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    /* we can check without requestCode == RC_APP_UPDATE because
+    we known exactly there is only requestCode from  startUpdateFlowForResult() */
+        if(requestCode == RC_APP_UPDATE && resultCode != RESULT_OK) {
+            Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

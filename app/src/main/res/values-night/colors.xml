@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#6200EE</color>
-    <color name="light_purple">@android:color/black</color>
-    <color name="purple">#E4D1FF</color>
+    <color name="colorPrimary">#0A5F52</color>
+    <color name="colorPrimaryDark">#042C25</color>
+    <color name="colorAccent">#0A5F52</color>
+
+    <color name="colorBackground">#202125</color>
+    <color name="colorSelected">#098A74</color>
+
     <color name="text_color">@android:color/white</color>
-    <color name="card_background_color">#202020</color>
+    <color name="card_background_color">#303135</color>
 </resources>

@@ -20,7 +20,7 @@
     <string name="sahr_dua" translatable="false">mvnv‡ii `yÕAv</string>
     <string name="sahr_dua_ayat_no" translatable="false">myivn gviBqvg - 19 t 26</string>
     <string name="sahr_dua_arabic" translatable="false">إِنِّي نَذَرْتُ لِلرَّحْمَٰنِ صَوْمًا</string>
-    <string name="sahr_dua_pronunciation" translatable="false">D”PviYt Bwbœ bvhviZz wji ingvwb mIgv|</string>
+    <string name="sahr_dua_pronunciation" translatable="false"><b>D”PviYt</b> Bwbœ bvhviZz wji ingvwb mIgv|</string>
     <string name="sahr_dua_bangla" translatable="false">A_©t wbðqB Avwg ingvb Z_v `qvevb Avjøvn&amp;i Rb¨B GKwU mIg cvj‡bi msKí Kijvg|</string>
 
     <!--============= Duah of Itmam =============-->
@@ -102,4 +102,13 @@
 
     <!--============= QBSTV Youtube Channel =============-->
     <string name="quran_based_solutions" translatable="false"><a href="https://www.youtube.com/channel/UC7b6yrjukFQrpLiJMBzNq_A">Quran Based Solutions</a></string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

@@ -36,8 +36,8 @@
 
     <style name="NavigationView" >
         <item name="fontFamily">@font/pt_sans_bold</item>
-        <item name="android:listDivider">@color/purple</item>
-        <item name="android:textColorSecondary">@color/purple</item>
+        <item name="android:listDivider">@color/colorSelected</item>
+        <item name="android:textColorSecondary">@color/colorSelected</item>
         <item name="android:textSize">@dimen/size_16</item>
     </style>
 
@@ -73,6 +73,7 @@
         <item name="android:layout_marginLeft">@dimen/margin</item>
         <item name="android:layout_marginRight">@dimen/margin</item>
         <item name="android:layout_marginBottom">@dimen/margin</item>
+        <item name="cardBackgroundColor">@color/card_background_color</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
         <item name="cardElevation">@dimen/card_elevation</item>
     </style>

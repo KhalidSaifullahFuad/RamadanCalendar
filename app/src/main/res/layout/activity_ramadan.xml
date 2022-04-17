@@ -43,7 +43,8 @@
         android:layout_below="@+id/toolbar"
         android:fitsSystemWindows="true"
         tools:context=".activities.RamadanActivity"
-        tools:openDrawer="start">
+        tools:openDrawer="start"
+        android:background="@color/colorBackground">
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@android:color/white"
+            android:background="@color/colorBackground"
             android:fitsSystemWindows="true"
             android:theme="@style/NavigationView"
             app:itemBackground="@drawable/drawer_selected_item"

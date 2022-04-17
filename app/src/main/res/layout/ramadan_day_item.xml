@@ -8,7 +8,8 @@
     android:layout_marginRight="@dimen/margin"
     android:layout_marginBottom="@dimen/margin"
     app:cardCornerRadius="@dimen/card_corner_radius"
-    app:cardElevation="@dimen/card_elevation">
+    app:cardElevation="@dimen/card_elevation"
+    app:cardBackgroundColor="@color/card_background_color">
 
     <RelativeLayout
         android:id="@+id/ramadan_day_layout"
